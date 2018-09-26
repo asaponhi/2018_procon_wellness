@@ -1,0 +1,26 @@
+
+.identity{
+  width:100%;
+  height: auto;
+  text-align: center;
+}
+.identity p{
+  font-size:20px;
+}
+.graph-oneweek{
+  /* float: left; */
+}
+.graph{
+  /* display: inline-block; */
+  float: left;
+}
+.graph-doughnut{
+  width: 30%;
+  height: auto;
+  /* display: inline-block; */
+}
+.graph-bar{
+  width: 50%;
+  height: auto;
+  /* display: inline-block; */
+}

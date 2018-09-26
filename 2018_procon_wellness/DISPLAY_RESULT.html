@@ -1,0 +1,51 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Display_Result</title>
+  <link rel="stylesheet" type="text/css" href="DISPLAY_RESULT_STYLE.css">
+
+
+  <!-- <script type="text/javascript" src="Date_Get.js"></script> -->
+</head>
+
+<body>
+  <div class="content-wrapper">
+    <div class="identity">
+      <p id="UserID"></p>
+
+    </div>
+
+    <div class="graph-oneweek">
+      <div class="graph graph-doughnut">
+        <canvas id="myDoughnutChart" style="position:relative;width:2000px; height:2000px;"></canvas>
+      </div>
+      <div class="graph graph-bar">
+        <canvas id="myBarChart" style="position:relative;width:2800px; height:2000px;"></canvas>
+      </div>
+    </div>
+    <div class="calorie-example"></div>
+  </div>
+
+  <script type="text/javascript" src="js/CSV_READER.js"></script>
+  <script type="text/javascript" src="js/IDENTITY.js"></script>
+  <script type="text/javascript" src="js/DISTANCE_WEEKLY.js"></script>
+  <script type="text/javascript" src="js/chart/Chart.js"></script>
+  <script type="text/javascript" src="js/DATE_GET.js"></script>
+  <script type="text/javascript" src="js/chart/GRAGH_BAR.js"></script>
+
+
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script> -->
+  <script>
+    UserID();//ユーザーID表示
+  </script>
+  <script>
+  Distance_Weekly();//Distance_Weekly()をコメントすると、Graph_Barが作動する。
+  </script>
+  <script>
+  //棒グラフ
+  Gragh_Bar();
+  </script>
+</body>
+</html>

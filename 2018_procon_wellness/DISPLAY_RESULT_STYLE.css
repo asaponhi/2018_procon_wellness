@@ -1,5 +1,5 @@
 @font-face{
-  font-family: "Smart_Font";
+  font-family: "smart_font";
   src:url("design/font/SMART_FONT_UI.otf");
 }
 
@@ -10,6 +10,7 @@
 }
 .identity p{
   font-size:20px;
+  font-family: "Arial";
 }
 .graph-oneweek{
   /* float: left; */
@@ -21,8 +22,27 @@
 .graph-doughnut{
   width: 30%;
   height: auto;
+  position: relative;
+  margin-right: 10%;
   /* display: inline-block; */
 }
+#myDoughnut-distance_weekly_sum{
+  position: absolute;
+  left:90%;
+  top:0%;
+  font-size: 80px;
+  font-family: "Arial";
+  font-style: "bold";
+}
+.myDoughnut-distance_weekly_sum_unit{
+  position: absolute;
+  left:130%;
+  top:10%;
+  font-size: 30px;
+  font-family: "Arial";
+  font-style: "bold";
+}
+
 .graph-bar{
   width: 50%;
   height: auto;

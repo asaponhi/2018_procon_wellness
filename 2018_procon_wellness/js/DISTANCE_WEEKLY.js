@@ -73,8 +73,8 @@ var Distance_Weekly = function() { //日付読み込み
     console.log("nowdate" + now_date + " i" + i);
     console.log("nowday" + now_day + " i" + i);
   }
-  alert("distance_weekly_array"+distance_weekly_array);
+  // alert("distance_weekly_array"+distance_weekly_array);
   // GRAGH_BARに渡せるようにする
-  getDistance_array(distance_weekly_array);
   // getDistance_array(distance_weekly_array);
+    getDistance_weekly(distance_weekly_sum,distance_weekly_array);
 }

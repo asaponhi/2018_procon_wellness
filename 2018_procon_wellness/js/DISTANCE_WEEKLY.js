@@ -19,7 +19,7 @@ var Distance_Weekly = function() { //日付読み込み
   //本日から日曜びまでさかのぼる
   //本日の曜日割り出して、０になるまで引き算していく　もし、日曜ならその日の距離足し算する　1回だけ行うがいいかな
   // var now_day= getDay();
-  var control_day = 6;
+  var control_day = 0;
   var now_date = getDate_hifun_control_day(control_day);
   var now_day = getDay_control_day(control_day);
   var start_day = getDay_control_day(control_day);

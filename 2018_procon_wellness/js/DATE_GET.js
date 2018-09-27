@@ -1,4 +1,4 @@
-var today = new Date();
+var today = new Date(2018,8,30);
 
 function getDate_slash() {
 
@@ -29,12 +29,26 @@ function getDate_hifun_control_day(control_day) {
  function getDate_this_Week(){
   //配列に09/25の形式で格納する
   var this_Week=['0','0','0','0','0','0','0'];
+  // var now_day = today.getDay();
+  // this_Week[now_day]=String(today.getMonth()+1)+'/'+String(today.getDate());
+  // for(var i=now_day,j=1;i>0;i--,j++){
+  //   this_Week[i-1]=String(today.getMonth()+1)+'/'+String(today.getDate()-j);
+  // }
+  // for(var i=now_day,j=1;i<6;i++,j++){
+  //   this_Week[i+1]=String(today.getMonth()+1)+'/'+String(today.getDate()+j);
+  // }
   var now_day = today.getDay();
   this_Week[now_day]=String(today.getMonth()+1)+'/'+String(today.getDate());
   for(var i=now_day,j=1;i>0;i--,j++){
-    this_Week[i-1]=String(today.getMonth()+1)+'/'+String(today.getDate()-j);
+    //月初→月末判定
+    var another_day=new Date(today.getFullYear(), today.getMonth() + 1, 0);
+    if(today.setDate(today.getDate()-j) == another_day){
+
+    }
+    else{this_Week[i-1]=String(today.getMonth()+1)+'/'+String(today.getDate()-j);}
   }
   for(var i=now_day,j=1;i<6;i++,j++){
+    //月末→月初判定
     this_Week[i+1]=String(today.getMonth()+1)+'/'+String(today.getDate()+j);
   }
 

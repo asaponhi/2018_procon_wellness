@@ -1,10 +1,10 @@
-
 //グラフの日にち（横軸）取得
 var this_week = getDate_this_Week();
-var distance_weekly_sum=0;
-var distance_weekly_array=[0,0,0,0,0,0,0]; //0で初期化 日～土曜
+var distance_weekly_sum = 0;
+var distance_weekly_array = [0, 0, 0, 0, 0, 0, 0]; //0で初期化 日～土曜
 var achievement_distance = 4.9; //0.7km*7日
-var difference_distance=-10;
+var difference_distance = -10;
+
 function getDistance_weekly(distance_sum, distance_array) { //1週間の各曜日の運動距離格納
   distance_weekly_sum = Number(distance_sum);
   distance_weekly_array = distance_array;
@@ -13,7 +13,7 @@ function getDistance_weekly(distance_sum, distance_array) { //1週間の各曜�
   // alert("GRAGH_BAR_distance_weekly_array"+distance_weekly_array);
 
   //ドーナツグラフ_距離差計算
-  // distance_weekly_sum=2.9;
+  // distance_weekly_sum=1.2;
   if (distance_weekly_sum < achievement_distance) {
     difference_distance = achievement_distance - distance_weekly_sum; //差を入れる
     // alert("difference_distance"+difference_distance);
@@ -24,101 +24,115 @@ var Gragh_Bar = function() {
   Chart.defaults.global.defaultFontFamily = 'Arial';
   //plugins
   var PercentagePlugin = {
-                          afterDatasetsDraw: function (chart, easing) {
-                              // To only draw at the end of animation, check for easing === 1
-                              var ctx = chart.ctx;
+    afterDatasetsDraw: function(chart, easing) {
+      // To only draw at the end of animation, check for easing === 1
+      var ctx = chart.ctx;
 
-                              chart.data.datasets.forEach(function (dataset, i) {
-                                  var dataSum = 0;
-                                  dataset.data.forEach(function (element){
-                                       dataSum += parseInt(element);
-                                  });
-                                  //alert(dataSum);
-                                  var meta = chart.getDatasetMeta(i);
-                                  if (!meta.hidden) {
-                                      meta.data.forEach(function (element, index) {
-                                          // Draw the text in black, with the specified font
-                                          ctx.fillStyle = '#655f5f';  //文字色：白
-                                          // ctx.fillStyle = '#818181';  //文字色：白
-                                          // ctx.fillStyle = '#858585';  //文字色：白
+      chart.data.datasets.forEach(function(dataset, i) {
+        var dataSum = 0;
+        dataset.data.forEach(function(element) {
+          dataSum += parseInt(element);
+        });
+        //alert(dataSum);
+        var meta = chart.getDatasetMeta(i);
+        if (!meta.hidden) {
+          meta.data.forEach(function(element, index) {
+            // Draw the text in black, with the specified font
+            ctx.fillStyle = '#655f5f'; //文字色：白
+            // ctx.fillStyle = '#818181';  //文字色：白
+            // ctx.fillStyle = '#858585';  //文字色：白
 
-                                          var fontSize = 65;
-                                          var fontStyle = 'bold';
-                                          var fontFamily = 'Arial';
-                                          ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+            var fontSize = 65;
+            var fontStyle = 'bold';
+            var fontFamily = 'Arial';
+            ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
 
-                                          // Just naively convert to string for now
-                                          // var labelString = chart.data.labels[index];
-                                          var labelString = "";
-                                          var dataString = " "+(Math.round(parseInt(dataset.data[index]) / dataSum * 1000)/10).toString() + "%";
+            // Just naively convert to string for now
+            // var labelString = chart.data.labels[index];
+            var labelString = "";
+            var dataString = " " + (Math.round(parseInt(dataset.data[index]) / dataSum * 1000) / 10).toString() + "%";
 
-                                          // Make sure alignment settings are correct
-                                          ctx.textAlign = 'center';
-                                          ctx.textBaseline = 'middle';
+            // Make sure alignment settings are correct
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
 
-                                          var padding = 155;
-                                          var position = element.tooltipPosition();
-                                          ctx.fillText(labelString, position.x, position.y - (fontSize / 2) - padding);
-                                          if(index==0)
-                                          ctx.fillText(dataString, position.x-10, position.y + (fontSize / 2) - padding);
-                                      });
-                                  }
-                              });
-                          }
-                      };
-
-
-                     var DataLabelPluginB = {afterDatasetsDraw:function(chart,easing){
-                        var ctx=chart.ctx;
-                        chart.data.datasets.forEach(function(dataset,i){
-                         var meta=chart.getDatasetMeta(i);
-                         if(!meta.hidden){meta.data.forEach(function(element,index){
-                            ctx.fillStyle='#655f5f';  //文字色：黒
-                            var fontSize=25;
-                            var fontStyle='bold';
-                            var fontFamily = 'Arial';ctx.font=Chart.helpers.fontString(fontSize,fontStyle,fontFamily);
-                                       var dataString = dataset.data[index].toString();  // データラベル（項目の値）の場合
-                                       //var dataString = chart.data.labels[index];      // ラベル（項目名）の場合
-                            //var dataString=chart.data.labels[index];
-                            //var dataString=chart.data.data[index];
-                            ctx.textAlign='center';
-                            ctx.textBaseline='middle';
-                            var padding=5;
-                            var position=element.tooltipPosition();
-                            ctx.fillText(dataString,position.x,position.y-(fontSize/2)-padding);
-                           });
-                        }});
-                   }};
+            var padding = 155;
+            var position = element.tooltipPosition();
+            ctx.fillText(labelString, position.x, position.y - (fontSize / 2) - padding);
+            if (index == 0)
+              ctx.fillText(dataString, position.x - 10, position.y + (fontSize / 2) - padding);
+          });
+        }
+      });
+    }
+  };
 
 
-  //割合計算
- // alert("GRAGH_BAR_distance_weekly_sum:"+distance_weekly_sum);
- // alert("GRAGH_BAR_difference_distance:"+difference_distance);
+  var DataLabelPluginB = {
+    afterDatasetsDraw: function(chart, easing) {
+      var ctx = chart.ctx;
+      chart.data.datasets.forEach(function(dataset, i) {
+        var meta = chart.getDatasetMeta(i);
+        if (!meta.hidden) {
+          meta.data.forEach(function(element, index) {
+            ctx.fillStyle = '#655f5f'; //文字色：黒
+            var fontSize = 25;
+            var fontStyle = 'bold';
+            var fontFamily = 'Arial';
+            ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+            var dataString = dataset.data[index].toString(); // データラベル（項目の値）の場合
+            //var dataString = chart.data.labels[index];      // ラベル（項目名）の場合
+            //var dataString=chart.data.labels[index];
+            //var dataString=chart.data.data[index];
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            var padding = 5;
+            var position = element.tooltipPosition();
+            ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+          });
+        }
+      });
+    }
+  };
 
- var difference_distance_rate=(difference_distance/(achievement_distance)*100);
-  var distance_weekly_sum_rate=(distance_weekly_sum/(achievement_distance)*100);
-  if(distance_weekly_sum_rate>100){
-    distance_weekly_sum_rate=100;
-    difference_distance_rate=0;
-  }
-  // if(difference_distance_rate>100)difference_distance_rate=100;
 
-  // distance_weekly_sum_string=0.5;
-  // difference_distance_string=0;
-  // alert("GRAGH_BAR_distance_weekly_sum"+distance_weekly_sum);
-  // alert("GRAGH_BAR_distance_weekly_array"+distance_weekly_array);
-  // alert("GRAGH_BAR__distance_weekly_sum_rate: "+distance_weekly_sum_rate);
-  // alert("GRAGH_BAR_difference_distance_string: "+difference_distance_string);
-
-  //ドーナツサイド
   document.getElementById("myDoughnut-distance_weekly_sum").innerHTML = String(distance_weekly_sum); //ID表示　1回目でも大丈夫
+  //割合計算
+  var difference_distance_rate = (difference_distance / (achievement_distance) * 100);
+  var distance_weekly_sum_rate = (distance_weekly_sum / (achievement_distance) * 100);
+  distance_weekly_sum_rate=Math.round(distance_weekly_sum_rate*10)/10;
+  if (distance_weekly_sum_rate >= 100) {
+    distance_weekly_sum_rate = 100;
+    difference_distance_rate = 0;
+    document.getElementById("myDoughnut-cheer-text").innerHTML = "今週達成！！";//
+    document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_rate)+"%";
+    // alert("達成");
+  }
+  else if(distance_weekly_sum_rate > 80){
+    document.getElementById("myDoughnut-cheer-text").innerHTML = "もう少し！！";
+    document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_rate)+"%";
+
+  }
+  else if(distance_weekly_sum_rate > 50){
+    document.getElementById("myDoughnut-cheer-text").innerHTML = "半分きった！";
+    document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_rate)+"%";
+  }
+  else if(distance_weekly_sum_rate > 0){
+    document.getElementById("myDoughnut-cheer-text").innerHTML = "もっと歩こう";
+    document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_rate)+"%";
+  }
   //ドーナツグラフ
+  Chart.defaults.global.elements.arc = {
+    borderWidth: 5,       // 枠線の太さ
+    borderColor:"rgba(252,230,16,0.7)",
+    // borderColor:"#777777",
+};
   var ctx1 = document.getElementById("myDoughnutChart");
   var myDoughnutChart = new Chart(ctx1, {
 
     type: 'doughnut',
     data: {
-      labels: ["1週間の歩き", "1週間の推奨運動距離 "+String(achievement_distance)+"KM まで"],
+      labels: ["1週間の歩き", "1週間の推奨歩行距離 " + String(achievement_distance) + "KM まで"],
       datasets: [{
         backgroundColor: [
           // "#f1c40f",
@@ -131,7 +145,7 @@ var Gragh_Bar = function() {
         // borderWidth:[//失敗
         //   7
         // ],
-        data: [distance_weekly_sum_rate,difference_distance_rate],
+        data: [distance_weekly_sum_rate, difference_distance_rate],
         // data: [distance_weekly_sum_string,difference_distance_string],
         // data: [12, 2],
         // borderWidth: 1,//動かない
@@ -149,14 +163,16 @@ var Gragh_Bar = function() {
         display: true,
         labels: {
           fontSize: 15,
-          fontFamily:'Arial',
+          fontFamily: 'Arial',
+          fontStyle:'bold',
+
           // padding: 100,
           // paddingBottom:50,
 
         },
-        fontFamily:'Arial',
+        fontFamily: 'Arial',
       },
-      dataString:"",
+      dataString: "",
       // ticks:{
       //   // paddingBottom:50,
       //   callback:function(value,index,values){
@@ -164,11 +180,15 @@ var Gragh_Bar = function() {
       //   }
     },
     // plugins: [dataLabelPlugin],
-    plugins: [PercentagePlugin],
+    // plugins: [PercentagePlugin],
   });
 
 
   //棒グラフ
+  Chart.defaults.global.elements.rectangle = {
+    borderWidth: 5,       // 枠線の太さ
+    borderColor:"#eeeeee",
+};
   var ctx2 = document.getElementById("myBarChart");
   var myBarChart = new Chart(ctx2, {
     //グラフの種類
@@ -184,13 +204,13 @@ var Gragh_Bar = function() {
       datasets: [{
         //凡例
         label: "1日運動した距離",
-        fontFamily:'Arial',
+        fontFamily: 'Arial',
         // fontSize:25,
         //背景色
         // backgroundColor: "rgba(31, 79, 231, 0.89)",
         // backgroundColor: "rgba(31, 103, 231, 0.4)",
         // backgroundColor: "rgba(90, 154, 223, 0.4)",//blue
-        backgroundColor: "rgba(75,192,192,0.4)",//greens
+        backgroundColor: "rgba(75,192,192,0.4)", //greens
         // backgroundColor: "rgba(75, 147, 193, 0.4)",//green
         //枠線の色
         // borderColor: "rgba(75, 159, 193, 1)",
@@ -213,9 +233,10 @@ var Gragh_Bar = function() {
         display: true,
         labels: {
           fontSize: 15,
-          fontFamily:'Arial',
+          fontFamily: 'Arial',
+          fontStyle:'bold',
         },
-        fontFamily:'Arial',
+        fontFamily: 'Arial',
       },
       scaleOverride: true, //縦軸の目盛りの上書き許可。これ設定しないとscale関連の設定が有効にならないので注意。
       //軸の設定
@@ -229,7 +250,7 @@ var Gragh_Bar = function() {
             // labelString: 'km', //ラベル
             // "<%=value%>km",
             fontSize: 25, //フォントサイズ
-            fontFamily:'Arial',
+            fontFamily: 'Arial',
           },
           //目盛りの設定
           ticks: {
@@ -238,9 +259,9 @@ var Gragh_Bar = function() {
             autoSkip: true,
             maxTicksLimit: 20, //値の最大表示数
             fontSize: 25, //フォントサイズ
-            fontFamily:'Arial',
-            callback:function(value,index,values){
-              return value+'km';
+            fontFamily: 'Arial',
+            callback: function(value, index, values) {
+              return value + 'km';
             }
           },
           lables: {
@@ -253,7 +274,7 @@ var Gragh_Bar = function() {
 
           scaleLabel: { //軸ラベル設定
             fontSize: 25, //フォントサイズ
-            fontFamily:'Arial',
+            fontFamily: 'Arial',
             // fillStyle:"#000000",
           },
           //目盛りの設定
@@ -263,7 +284,7 @@ var Gragh_Bar = function() {
             autoSkip: true,
             maxTicksLimit: 20, //値の最大表示数
             fontSize: 25, //フォントサイズ
-            fontFamily:'Arial',
+            fontFamily: 'Arial',
             // fontColor:"#666",
           },
           lables: {

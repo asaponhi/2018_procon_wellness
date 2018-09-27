@@ -118,7 +118,7 @@ var Gragh_Bar = function() {
 
     type: 'doughnut',
     data: {
-      labels: ["1週間の歩き", "目標距離まで"],
+      labels: ["1週間の歩き", "1週間の推奨運動距離 "+String(achievement_distance)+"KM まで"],
       datasets: [{
         backgroundColor: [
           // "#f1c40f",
@@ -138,13 +138,13 @@ var Gragh_Bar = function() {
       }]
     },
     options: {
-      title: {
-        display: true,
-        fontFamily:'Arial',
-        fontSize: 40,
-        text: '1週間の歩行距離',
-        // padding:-10,
-      },
+      // title: {
+      //   display: true,
+      //   fontFamily:'Arial',
+      //   fontSize: 40,
+      //   text: '1週間の歩行距離',
+      //   // padding:-10,
+      // },
       legend: { //凡例
         display: true,
         labels: {
@@ -203,12 +203,12 @@ var Gragh_Bar = function() {
     },
     //オプションの設定
     options: {
-      title: {
-        display: true,
-        fontFamily:'Arial',
-        text: '1週間歩行グラフ',
-        fontSize: 40,
-      },
+      // title: {
+      //   display: true,
+      //   fontFamily:'Arial',
+      //   text: '1週間歩行グラフ',
+      //   fontSize: 40,
+      // },
       legend: { //凡例
         display: true,
         labels: {

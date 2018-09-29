@@ -7,11 +7,15 @@ var result = getCSV("data.csv"); //csv読み込み
 // document.write(result);
 var Distance_Weekly = function() { //日付読み込み
   //1日歩行距離計算
-  // var now_date = getDate_hifun();
+  var now_date = getDate_hifun();
+  // alert("now_date-Distance"+now_date);//OK
+  var now_day = getDay_normal();
+  var start_day = getDay_normal();
+  // alert("now_day"+now_day);
+  // alert("start_day"+start_day);
   // var now_date = new date();
   // now_date= (now_date.getFullYear(),now_date.getMonth(),now_date.getDate());
-  // alert(now_date);
-  var deb = '2018-09-21'; //デバッグ距離加算用
+  // var deb = '2018-09-21'; //デバッグ距離加算用
   // document.write(result);//デバッグ日付取得確認
   var distance_weekly_array = [0, 0, 0, 0, 0, 0, 0]; //0で初期化 日～土曜
   var distance_weekly_sum = 0; //1週間歩行距離計算
@@ -19,10 +23,13 @@ var Distance_Weekly = function() { //日付読み込み
   //本日から日曜びまでさかのぼる
   //本日の曜日割り出して、０になるまで引き算していく　もし、日曜ならその日の距離足し算する　1回だけ行うがいいかな
   // var now_day= getDay();
-  var control_day = 0;
-  var now_date = getDate_hifun_control_day(control_day);
-  var now_day = getDay_control_day(control_day);
-  var start_day = getDay_control_day(control_day);
+  //デバッグ用コントロール
+  // var control_day = 7;
+  // var now_date = getDate_hifun_control_day(control_day);
+  // var now_day = getDay_control_day(control_day);
+  // var start_day = getDay_control_day(control_day);
+  //////////////
+
   // alert("now_day"+now_date);
   // var start_day= getDay(now_date.getFullYear,now_date.getMonth(),now_date.getDate()-control_day);
   // var now_day= getDay(now_date.getFullYear,now_date.getMonth(),now_date.getDate()-control_day);
@@ -68,8 +75,10 @@ var Distance_Weekly = function() { //日付読み込み
     // alert("distance_weekly_sum"+distance_weekly_sum);
 
     //日付を1日前にする
-    now_date = getDate_hifun_control_day(control_day + (start_day - i) + 1);
-    now_day = getDay((start_day - i) - 1);
+    // now_date = getDate_hifun_control_day(control_day + (start_day - i) + 1);//デバッグ用コントロール
+    // now_day = getDay((start_day - i) - 1);
+    now_date = getDate_hifun((start_day - i) + 1);
+    now_day = getDay_normal((start_day - i) - 1);
     console.log("nowdate" + now_date + " i" + i);
     console.log("nowday" + now_day + " i" + i);
   }

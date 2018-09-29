@@ -13,10 +13,14 @@
   font-family: "Arial";
   font-weight:bold;
   color: #655f5f;
+  /* border-bottom: dotted 3px #655f5f; */
+  background: linear-gradient(transparent 85%,yellow 85%);
+  margin-bottom: 1%;
 }
 .graph-oneweek{
   /* float: left; */
   position: relative;
+  /* margin-top: 2%; */
 }
 .graph{
   display: inline-block;

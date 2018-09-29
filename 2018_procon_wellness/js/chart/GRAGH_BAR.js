@@ -203,7 +203,7 @@ var Gragh_Bar = function() {
       //データセット
       datasets: [{
         //凡例
-        label: "1日運動した距離",
+        label: "1日歩行した距離",
         fontFamily: 'Arial',
         // fontSize:25,
         //背景色

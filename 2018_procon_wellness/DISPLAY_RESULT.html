@@ -14,9 +14,9 @@
     <div class="identity">
       <div id="UserID"></div>
     </div>
-
-    <div class="graph-oneweek">
-      <div class="graph graph-doughnut">
+    <ul>
+      <!-- <div class="graph-oneweek">
+      <li class="content graph graph-doughnut">
         <div class="graph title graph-doughnut-title">1週間歩行距離</div>
         <div id="myDoughnut-distance_weekly_sum"></div>
         <div class="myDoughnut-distance_weekly_sum_unit"> KM</div>
@@ -25,17 +25,51 @@
           <div id="myDoughnut-cheer-text"></div>
           <div id="myDoughnut-distance_rate-text"></div>
         </div>
-      </div>
-      <div class="graph graph-bar">
+      </li>
+      <li class="content graph graph-bar">
         <div class="graph title graph-bar-title">1週間歩行グラフ</div>
         <canvas id="myBarChart" style="position:relative;width:2800px; height:2000px;"></canvas>
       </div>
-    </div>
+    </li>
 
-    <!-- <div class="graph calorie-content">
+    <li class="content graph calorie-content">
       <div class="graph title calorie-title">本日の歩行 消費カロリー</div>
-    </div> -->
+    </li>
+  </ul> -->
+      <!-- <div class="graph-oneweek"> -->
+      <div class="content graph graph-doughnut">
+        <div class="graph title graph-doughnut-title">1週間歩行距離</div>
+        <div id="myDoughnut-distance_weekly_sum"></div>
+        <div class="myDoughnut-distance_weekly_sum_unit"> KM</div>
+        <canvas id="myDoughnutChart" style="position:relative;width:2000px; height:2000px;"></canvas>
+        <!-- 円グラフ -->
+        <div class="myDoughnut-achievement-text">
+          <div id="myDoughnut-cheer-text"></div>
+          <div id="myDoughnut-distance_rate-text"></div>
+        </div>
+      </div>
+      <!-- 今週の棒グラフ -->
+      <div class="content graph graph-bar">
+        <div class="graph title graph-bar-title">1週間歩行グラフ</div>
+        <canvas id="myBarChart" style="position:relative;width:2800px; height:2000px;"></canvas>
+      </div>
+      <!-- コンテンツ3 -->
+      <div class="content_third">
+        <!-- カロリー -->
+        <div class="content graph calorie-content">
+          <div class="graph title calorie-title">消費カロリー</div>
+        </div>
+        <!-- 先週の棒グラフ -->
+        <div class="content graph graph-bar">
+        <div class="graph title graph-bar-title-lastWeek">先週歩行グラフ</div>
+        <canvas id="myBarChart" style="position:relative;width:2800px; height:2000px;"></canvas>
+      </div>
+    </div>
+    <!-- third終了 -->
+      </div>
   </div>
+
+
 
 
   <script type="text/javascript" src="js/CSV_READER.js"></script>
@@ -46,16 +80,17 @@
   <script type="text/javascript" src="js/chart/GRAGH_BAR.js"></script>
 
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script> -->
   <script>
-    UserID();//ユーザーID表示
+    UserID(); //ユーザーID表示
   </script>
   <script>
-  Distance_Weekly();//Distance_Weekly()をコメントすると、Graph_Barが作動する。
+    Distance_Weekly(); //Distance_Weekly()をコメントすると、Graph_Barが作動する。
   </script>
   <script>
-  //棒グラフ
-  Gragh_Bar();
+    //棒グラフ
+    Gragh_Bar();
   </script>
 </body>
+
 </html>

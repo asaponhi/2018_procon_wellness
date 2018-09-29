@@ -199,7 +199,8 @@ var Gragh_Bar = function() {
       // labels: ["日曜", "月曜", "火曜", "水曜", "木曜", "金曜", "土曜"],
       // labels: ["日曜"+this_week[0],"月曜\n"+this_week[1], "火曜\n"+this_week[2], "水曜\n"+this_week[3], "木曜\n"+this_week[4], "金曜\n"+this_week[5], "土曜\n"+this_week[6]],
       // labels: [this_week[0]+"日曜\n",this_week[1]+"月曜\n", this_week[2]+"火曜\n",this_week[3]+ "水曜\n", this_week[4]+"木曜\n",this_week[5]+ "金曜\n",this_week[6]+ "土曜\n"],
-      labels: [this_week[0] + " 日", this_week[1] + " 月", this_week[2] + " 火", this_week[3] + " 水", this_week[4] + " 木", this_week[5] + " 金", this_week[6] + " 土"],
+      labels: [this_week[0] + "日", this_week[1] + "月", this_week[2] + "火", this_week[3] + "水", this_week[4] + "木", this_week[5] + "金", this_week[6] + "土"],
+      // labels: [this_week[0] + " 日", this_week[1] + " 月", this_week[2] + " 火", this_week[3] + " 水", this_week[4] + " 木", this_week[5] + " 金", this_week[6] + " 土"],
       //データセット
       datasets: [{
         //凡例

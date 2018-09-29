@@ -17,6 +17,14 @@
   background: linear-gradient(transparent 85%,yellow 85%);
   margin-bottom: 1%;
 }
+.content{
+  /* width : calc(100% / 3) ; */
+  /* display: flex;
+  flex-direction: row; */
+}
+.li{
+  display: inline-block;
+}
 .graph-oneweek{
   /* float: left; */
   position: relative;
@@ -36,6 +44,7 @@
   font-size: 50px;
 }
 .graph-doughnut{
+  /* width: 25%; */
   width: 30%;
   height: auto;
   /* margin-top:3%;  */
@@ -83,14 +92,17 @@ font-size: 60px;
 }
 /* 棒グラフ */
 .graph-bar{
+  /* width: 45%; */
   width: 50%;
   height: auto;
   position: absolute;
+  margin-left: -2%;
   /* display: inline-block; */
 }
 /* カロリー */
 .calorie-content{
-  width: 10%;
+  /* width: 20px; */
+  width: 20%;
   height: auto;
 }
 .calorie-title{

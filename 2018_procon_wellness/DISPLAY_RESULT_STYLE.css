@@ -76,15 +76,16 @@
 
   position: absolute;
   top:58%;
-  left:28%;
+  left:30%;
   margin: 0 auto;
 
 }
 #myDoughnut-cheer-text{
-font-size: 40px;
+font-size: 38px;
 line-height: 0.8;
 }
 #myDoughnut-distance_rate-text{
+  margin-left: -20%;
 font-size: 60px;
 }
 /* 棒グラフ */
@@ -122,7 +123,7 @@ font-size: 60px;
   font-weight:bold;
   color: #655f5f;
   text-align: left;
-  font-size: 30px;
+  font-size: 40px;
 }
 .calorie-text{
 

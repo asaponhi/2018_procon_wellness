@@ -202,6 +202,7 @@ var Gragh_Bar = function() {
     borderColor:"#eeeeee",
 };
   var ctx2 = document.getElementById("myBarChart");
+  // alert(distance_weekly_array_lastWeek);
   var myBarChart = new Chart(ctx2, {
     //グラフの種類
     type: 'bar',

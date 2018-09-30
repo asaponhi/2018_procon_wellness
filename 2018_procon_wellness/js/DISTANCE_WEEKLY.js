@@ -3,7 +3,7 @@ document.write("<script type='text/javascript' src='CSV_READER.js'></script>");
 document.write("<script type='text/javascript' src='DATE_GET.js'></script>");
 document.write("<script type='text/javascript' src='chart/GRAGH_BAR.js'></script>");
 
-var result = getCSV("data.csv"); //csv読み込み
+var result = getCSV("csv/data.csv"); //csv読み込み
 var Distance_Weekly = function() { //日付読み込み
   //1日歩行距離計算
   // var now_date = getDate_hifun();

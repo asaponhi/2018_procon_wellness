@@ -1,7 +1,7 @@
 //他js読み込み
 document.write("<script type='text/javascript' src='CSV_READER.js'></script>");
 
-var result = getCSV("data.csv"); //csv読み込み
+var result = getCSV("csv/data.csv"); //csv読み込み
 
   //お名前表示
 var UserID = function(){

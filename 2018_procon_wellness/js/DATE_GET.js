@@ -66,7 +66,10 @@ function getDate_this_Week() {
   //本日よりも前の日
   for (var i = now_day, j = 1; i > 0; i--, j++) {//月初→月末判定
     today_getDate_this_Week.setDate(today_getDate_this_Week.getDate() - 1);//前の日取得
-    this_Week[i + 1] = String(today_getDate_this_Week.getMonth() + 1) + '/' + String(today_getDate_this_Week.getDate());
+    // alert("today_getDate_this_Week"+today_getDate_this_Week);
+    // alert("String(today_getDate_this_Week.getMonth() + 1)"+(today_getDate_this_Week.getMonth() + 1));
+    // alert("String(today_getDate_this_Week.getDate())"+(today_getDate_this_Week.getDate()));
+    this_Week[i - 1] = String(today_getDate_this_Week.getMonth() + 1) + '/' + String(today_getDate_this_Week.getDate());
     // if (another_day.getMonth() == today_getDate_this_Week.getMonth() && another_day.getDate() == today_getDate_this_Week.getDate()) {
     //   // alert("同じ日");
     // } else {

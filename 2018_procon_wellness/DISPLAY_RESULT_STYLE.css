@@ -118,12 +118,12 @@ font-size: 60px;
   margin-top: 4%;
 }
 .calorie-today_example ul {
-  list-style: none;
+  /* list-style: none; */
   font-family: "Arial";
   font-weight:bold;
   color: #655f5f;
   text-align: left;
-  font-size: 40px;
+  font-size: 28px;
 }
 .calorie-text{
 
@@ -131,7 +131,7 @@ font-size: 60px;
 
 }
 .calorie_example{
-
+  margin-bottom: 10%;
 }
 
 /* .graph-bar-title-lastWeek{

@@ -30,7 +30,14 @@ function getDate_hifun() {
 
   return now_date;
 }
+function getDate_hifun_oneday(oneday) {
+  // alert("today_DATEGET1"+today);
 
+  var now_date = String(oneday.getFullYear()) + '-' + ('0' + String(oneday.getMonth() + 1)).slice(-2) + '-' + String(oneday.getDate());
+  // alert("today_DATEGET2"+today);
+
+  return now_date;
+}
 function getDate_hifun_control_day(control_day) {
   var now_date = String(today.getFullYear()) + '-' + ('0' + String(today.getMonth() + 1)).slice(-2) + '-' + String(today.getDate() - control_day);
   return now_date;
@@ -88,9 +95,10 @@ function getDay_normal() { //日付から曜日判定
   return today.getDay();
 }
 
-function getDay(oneday) { //日付から曜日判定
-  var day = new Date(oneday)
-  return day.getDay();
+function getDay_oneday(oneday) { //日付から曜日判定
+  // var day = new Date(oneday)
+  // return day.getDay();
+  return oneday.getDay();
 }
 
 function getDay_control_day(control_day) {

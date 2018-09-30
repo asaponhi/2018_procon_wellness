@@ -1,23 +1,35 @@
 //グラフの日にち（横軸）取得
 var this_week = getDate_this_Week();
-var distance_weekly_sum = 0;
-var distance_weekly_array = [0, 0, 0, 0, 0, 0, 0]; //0で初期化 日～土曜
+var distance_weekly_sum_thisWeek = 0;
+var distance_weekly_array_thisWeek = [0, 0, 0, 0, 0, 0, 0]; //0で初期化 日～土曜
+var distance_weekly_sum_lastWeek = 0;
+var distance_weekly_array_lastWeek = [0, 0, 0, 0, 0, 0, 0]; //0で初期化 日～土曜
+//ドーナツ型グラフで必要　今週のだけで十分
 var achievement_distance = 4.9; //0.7km*7日
 var difference_distance = -10;
 
-function getDistance_weekly(distance_sum, distance_array) { //1週間の各曜日の運動距離格納
-  distance_weekly_sum = Number(distance_sum);
-  distance_weekly_array = distance_array;
-
-  // alert("GRAGH_BAR_distance_weekly_sum"+distance_weekly_sum);
-  // alert("GRAGH_BAR_distance_weekly_array"+distance_weekly_array);
+// function getDistance_weekly(distance_sum, distance_array) { //1週間の各曜日の運動距離格納
+function getDistance_weekly(distance_sum_thisWeek, distance_array_thisWeek,distance_sum_lastWeek, distance_array_lastWeek) { //1週間の各曜日の運動距離格納
+  //今週
+  distance_weekly_sum_thisWeek = Number(distance_sum_thisWeek);
+  distance_weekly_array_thisWeek = distance_array_thisWeek;
+  //先週
+  distance_weekly_sum_lastWeek = Number(distance_sum_lastWeek);
+  distance_weekly_array_lastWeek = distance_array_lastWeek;
+  // alert("GRAGH_BAR_distance_weekly_sum_thisWeek"+distance_weekly_sum_thisWeek);
+  // alert("GRAGH_BAR_distance_weekly_array_thisWeek"+distance_weekly_array_thisWeek);
 
   //ドーナツグラフ_距離差計算
-  // distance_weekly_sum=1.2;
-  if (distance_weekly_sum < achievement_distance) {
-    difference_distance = achievement_distance - distance_weekly_sum; //差を入れる
+  // distance_weekly_sum_thisWeek=1.2;
+  if (distance_weekly_sum_thisWeek < achievement_distance) {
+    difference_distance = achievement_distance - distance_weekly_sum_thisWeek; //差を入れる
     // alert("difference_distance"+difference_distance);
   }
+  //先週は棒グラフだけだから、ドーナツ型グラフ用の処理はいらない
+  // if (distance_weekly_sum_lastWeek < achievement_distance) {
+  //   difference_distance = achievement_distance - distance_weekly_sum_lastWeek; //差を入れる
+  //   // alert("difference_distance"+difference_distance);
+  // }
 }
 
 var Gragh_Bar = function() {
@@ -96,30 +108,30 @@ var Gragh_Bar = function() {
   };
 
 
-  document.getElementById("myDoughnut-distance_weekly_sum").innerHTML = String(distance_weekly_sum); //ID表示　1回目でも大丈夫
+  document.getElementById("myDoughnut-distance_weekly_sum_thisWeek").innerHTML = String(distance_weekly_sum_thisWeek); //ID表示　1回目でも大丈夫
   //割合計算
   var difference_distance_rate = (difference_distance / (achievement_distance) * 100);
-  var distance_weekly_sum_rate = (distance_weekly_sum / (achievement_distance) * 100);
-  distance_weekly_sum_rate=Math.round(distance_weekly_sum_rate*10)/10;
-  if (distance_weekly_sum_rate >= 100) {
-    distance_weekly_sum_rate = 100;
+  var distance_weekly_sum_thisWeek_rate = (distance_weekly_sum_thisWeek / (achievement_distance) * 100);
+  distance_weekly_sum_thisWeek_rate=Math.round(distance_weekly_sum_thisWeek_rate*10)/10;
+  if (distance_weekly_sum_thisWeek_rate >= 100) {
+    distance_weekly_sum_thisWeek_rate = 100;
     difference_distance_rate = 0;
-    document.getElementById("myDoughnut-cheer-text").innerHTML = "今週達成！！";//
-    document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_rate)+"%";
+    document.getElementById("myDoughnut-cheer-text").innerHTML = "<span style='color: red;'>今週</span>達成！！";//
+    document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_thisWeek_rate)+"%";
     // alert("達成");
   }
-  else if(distance_weekly_sum_rate > 80){
+  else if(distance_weekly_sum_thisWeek_rate > 80){
     document.getElementById("myDoughnut-cheer-text").innerHTML = "もう少し！！";
-    document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_rate)+"%";
+    document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_thisWeek_rate)+"%";
 
   }
-  else if(distance_weekly_sum_rate > 50){
+  else if(distance_weekly_sum_thisWeek_rate > 50){
     document.getElementById("myDoughnut-cheer-text").innerHTML = "半分きった！";
-    document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_rate)+"%";
+    document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_thisWeek_rate)+"%";
   }
-  else if(distance_weekly_sum_rate > 0){
-    document.getElementById("myDoughnut-cheer-text").innerHTML = "もっと歩こう";
-    document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_rate)+"%";
+  else if(distance_weekly_sum_thisWeek_rate > 0){
+    document.getElementById("myDoughnut-cheer-text").innerHTML = "<span style='color: red;font-size: 8pt;'>もっと</span>歩こう";
+    document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_thisWeek_rate)+"%";
   }
   //ドーナツグラフ
   Chart.defaults.global.elements.arc = {
@@ -145,8 +157,8 @@ var Gragh_Bar = function() {
         // borderWidth:[//失敗
         //   7
         // ],
-        data: [distance_weekly_sum_rate, difference_distance_rate],
-        // data: [distance_weekly_sum_string,difference_distance_string],
+        data: [distance_weekly_sum_thisWeek_rate, difference_distance_rate],
+        // data: [distance_weekly_sum_thisWeek_string,difference_distance_string],
         // data: [12, 2],
         // borderWidth: 1,//動かない
       }]
@@ -204,7 +216,28 @@ var Gragh_Bar = function() {
       //データセット
       datasets: [{
         //凡例
-        label: "1日歩行した距離",
+        label: "先週:1日歩行した距離",
+        fontFamily: 'Arial',
+        // fontSize:25,
+        //背景色
+        // backgroundColor: "rgba(31, 79, 231, 0.89)",
+        // backgroundColor: "rgba(31, 103, 231, 0.4)",
+        // backgroundColor: "rgba(90, 154, 223, 0.4)",//blue
+        // backgroundColor: "rgba(75,192,192,0.4)", //greens
+        backgroundColor: "rgba(193, 75, 92, 0.4)", //greens
+
+        // backgroundColor: "rgba(75, 147, 193, 0.4)",//green
+        //枠線の色
+        // borderColor: "rgba(75, 159, 193, 1)",
+        borderColor: "rgba(193, 75, 124, 1)",
+        //グラフのデータ
+        // data: [12, 19, 3, 5, 2, 3]
+        // data: [Number(distance_weekly_array_thisWeek[0]),Number(distance_weekly_array_thisWeek[1]),Number(distance_weekly_array_thisWeek[2]),Number(distance_weekly_array_thisWeek[3]),Number(distance_weekly_array_thisWeek[4]),Number(distance_weekly_array_thisWeek[5]),Number(distance_weekly_array_thisWeek[6])]
+        data: [(distance_weekly_array_lastWeek[0]), (distance_weekly_array_lastWeek[1]), (distance_weekly_array_lastWeek[2]), (distance_weekly_array_lastWeek[3]), (distance_weekly_array_lastWeek[4]), (distance_weekly_array_lastWeek[5]), (distance_weekly_array_lastWeek[6])]
+      },
+      {
+        //凡例
+        label: "今週:1日歩行した距離",
         fontFamily: 'Arial',
         // fontSize:25,
         //背景色
@@ -212,15 +245,17 @@ var Gragh_Bar = function() {
         // backgroundColor: "rgba(31, 103, 231, 0.4)",
         // backgroundColor: "rgba(90, 154, 223, 0.4)",//blue
         backgroundColor: "rgba(75,192,192,0.4)", //greens
+        // backgroundColor: "rgba(75, 117, 193, 0.4)", //greens
         // backgroundColor: "rgba(75, 147, 193, 0.4)",//green
         //枠線の色
         // borderColor: "rgba(75, 159, 193, 1)",
         borderColor: "rgba(75,192,192,1)",
         //グラフのデータ
         // data: [12, 19, 3, 5, 2, 3]
-        // data: [Number(distance_weekly_array[0]),Number(distance_weekly_array[1]),Number(distance_weekly_array[2]),Number(distance_weekly_array[3]),Number(distance_weekly_array[4]),Number(distance_weekly_array[5]),Number(distance_weekly_array[6])]
-        data: [(distance_weekly_array[0]), (distance_weekly_array[1]), (distance_weekly_array[2]), (distance_weekly_array[3]), (distance_weekly_array[4]), (distance_weekly_array[5]), (distance_weekly_array[6])]
-      }]
+        // data: [Number(distance_weekly_array_thisWeek[0]),Number(distance_weekly_array_thisWeek[1]),Number(distance_weekly_array_thisWeek[2]),Number(distance_weekly_array_thisWeek[3]),Number(distance_weekly_array_thisWeek[4]),Number(distance_weekly_array_thisWeek[5]),Number(distance_weekly_array_thisWeek[6])]
+        data: [(distance_weekly_array_thisWeek[0]), (distance_weekly_array_thisWeek[1]), (distance_weekly_array_thisWeek[2]), (distance_weekly_array_thisWeek[3]), (distance_weekly_array_thisWeek[4]), (distance_weekly_array_thisWeek[5]), (distance_weekly_array_thisWeek[6])]
+      }
+    ]
     },
     //オプションの設定
     options: {

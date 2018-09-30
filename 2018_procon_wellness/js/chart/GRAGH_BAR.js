@@ -116,7 +116,7 @@ var Gragh_Bar = function() {
   if (distance_weekly_sum_thisWeek_rate >= 100) {
     distance_weekly_sum_thisWeek_rate = 100;
     difference_distance_rate = 0;
-    document.getElementById("myDoughnut-cheer-text").innerHTML = "<span style='color: red;'>今週</span>達成！！";//
+    document.getElementById("myDoughnut-cheer-text").innerHTML = "今週達成！！";//
     document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_thisWeek_rate)+"%";
     // alert("達成");
   }
@@ -130,7 +130,7 @@ var Gragh_Bar = function() {
     document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_thisWeek_rate)+"%";
   }
   else if(distance_weekly_sum_thisWeek_rate > 0){
-    document.getElementById("myDoughnut-cheer-text").innerHTML = "<span style='color: red;font-size: 8pt;'>もっと</span>歩こう";
+    document.getElementById("myDoughnut-cheer-text").innerHTML = "もっと歩こう";
     document.getElementById("myDoughnut-distance_rate-text").innerHTML = String(distance_weekly_sum_thisWeek_rate)+"%";
   }
   //ドーナツグラフ
@@ -285,7 +285,7 @@ var Gragh_Bar = function() {
             display: true, //表示設定
             // labelString: 'km', //ラベル
             // "<%=value%>km",
-            fontSize: 25, //フォントサイズ
+            fontSize: 20, //フォントサイズ
             fontFamily: 'Arial',
           },
           //目盛りの設定
@@ -297,7 +297,7 @@ var Gragh_Bar = function() {
             fontSize: 25, //フォントサイズ
             fontFamily: 'Arial',
             callback: function(value, index, values) {
-              return value + 'km';
+              return value + 'KM';
             }
           },
           lables: {
@@ -309,9 +309,7 @@ var Gragh_Bar = function() {
           display: true,
 
           scaleLabel: { //軸ラベル設定
-            fontSize: 25, //フォントサイズ
-            fontFamily: 'Arial',
-            // fillStyle:"#000000",
+
           },
           //目盛りの設定
           ticks: {
@@ -319,7 +317,7 @@ var Gragh_Bar = function() {
             beginAtZero: true,
             autoSkip: true,
             maxTicksLimit: 20, //値の最大表示数
-            fontSize: 25, //フォントサイズ
+            fontSize: 25, //フォントサイズ //本当
             fontFamily: 'Arial',
             // fontColor:"#666",
           },

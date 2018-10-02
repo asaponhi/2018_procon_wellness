@@ -12,6 +12,7 @@
   color: #655f5f;
   /* border-bottom: dotted 3px #655f5f; */
   background: linear-gradient(transparent 85%,yellow 85%);
+  padding-bottom: 1%;
   margin-top: -0.4%;
   margin-bottom: 1%;
 }

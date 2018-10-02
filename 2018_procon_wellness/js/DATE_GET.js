@@ -25,7 +25,7 @@ function getDate_slash() {
 function getDate_hifun() {
   // alert("today_DATEGET1"+today);
 
-  var now_date = String(today.getFullYear()) + '-' + ('0' + String(today.getMonth() + 1)).slice(-2) + '-' + String(today.getDate());
+  var now_date = String(today.getFullYear()) + '-' + ('0' + String(today.getMonth() + 1)).slice(-2) + '-' +('0' + String(today.getDate())).slice(-2);
   // alert("today_DATEGET2"+today);
 
   return now_date;
@@ -33,13 +33,16 @@ function getDate_hifun() {
 function getDate_hifun_oneday(oneday) {
   // alert("today_DATEGET1"+today);
 
-  var now_date = String(oneday.getFullYear()) + '-' + ('0' + String(oneday.getMonth() + 1)).slice(-2) + '-' + String(oneday.getDate());
+  var now_date = String(oneday.getFullYear()) + '-' + ('0' + String(oneday.getMonth() + 1)).slice(-2) + '-' +('0' + String(oneday.getDate())).slice(-2);
+  // var now_date = String(oneday.getFullYear()) + '-' + ('0' + String(oneday.getMonth() + 1)).slice(-2) + '-' + ('0' + String(today.getDate())).slice(-2));
   // alert("today_DATEGET2"+today);
 
   return now_date;
 }
 function getDate_hifun_control_day(control_day) {
-  var now_date = String(today.getFullYear()) + '-' + ('0' + String(today.getMonth() + 1)).slice(-2) + '-' + String(today.getDate() - control_day);
+  var now_date = String(today.getFullYear()) + '-' + ('0' + String(today.getMonth() + 1)).slice(-2) + '-' +('0' + String(today.getDate()-control_day)).slice(-2);
+  // var now_date = String(today.getFullYear()) + '-' + ('0' + String(today.getMonth() + 1)).slice(-2) + '-' + String(today.getDate() - control_day);
+  // var now_date = String(today.getFullYear()) + '-' + ('0' + String(today.getMonth() + 1)).slice(-2) + '-' + String(today.getDate() - control_day);
   return now_date;
 }
 

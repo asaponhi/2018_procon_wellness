@@ -3,9 +3,15 @@ document.write("<script type='text/javascript' src='CSV_READER.js'></script>");
 document.write("<script type='text/javascript' src='DATE_GET.js'></script>");
 document.write("<script type='text/javascript' src='chart/GRAGH_BAR.js'></script>");
 
-var result = getCSV("csv/data.csv"); //csv読み込み
+//var result = getCSV("data.csv"); //csv読み込み
 var Distance_Weekly = function() { //日付読み込み
-  //1日歩行距離計算
+ var result= getCSV("data.csv");
+    if(result[1][0]==null)alert("aho");
+    while(result[1][0]==null){
+ result= getCSV("data.csv");
+    }
+//    alert(result);
+    //1日歩行距離計算
   // var now_date = getDate_hifun();
   // var now_day = getDay_normal();
   // var start_day = getDay_normal();
@@ -31,8 +37,6 @@ var Distance_Weekly = function() { //日付読み込み
   for (var i = start_day; i >= 0; i--) {
     // alert("j:"+j);
     //1日計算スクリプト
-    // alert("(result[j][2])"+(result[j][2]));
-    // alert("now_date_hifun"+now_date_hifun);
     var distance_1day_sum = 0;//1日歩行距離初期化
     var date_chage_flag = false;
     while (!date_chage_flag) {
@@ -43,7 +47,6 @@ var Distance_Weekly = function() { //日付読み込み
       } else if (String(result[j][2]) == now_date_hifun) { //今日の日付と同じなら　//now_day（deb）の日付を1日前に設定する
         distance_1day_sum += Number(result[j][3]);
         console.log("累計距離：" + distance_1day_sum.toFixed(1) + "<BR><BR>");
-
         j++;
       } else if (String(result[j][2]) == null) { //記録の終了条件はないか？　//配列の範囲こえて、取得できないと思う　自分でresultに終了条件付けた至徳とか
         //for文抜け出す
@@ -60,19 +63,19 @@ var Distance_Weekly = function() { //日付読み込み
     if(week_count==0){//今週なら
       // alert("今週に+"+j);
       //配列に各曜日ごとに格納する　添え字は一番大きなかっこのやつ使える
-      distance_weekly_array_thisWeek[i] = distance_1day_sum;
+      distance_weekly_array_thisWeek[i] =　Math.floor(distance_1day_sum*10)/10;
       // alert("distance_weekly_array"+distance_weekly_array);
       //1週間歩行距離計算
-      distance_weekly_sum_thisWeek += distance_1day_sum;
+      distance_weekly_sum_thisWeek += Math.floor(distance_1day_sum*10)/10;
       // alert("distance_weekly_sum"+distance_weekly_sum);
     }
     else if(week_count==1){//先週なら
       // alert("先週に+"+j);
       //配列に各曜日ごとに格納する　添え字は一番大きなかっこのやつ使える
-      distance_weekly_array_lastWeek[i] = distance_1day_sum;
+      distance_weekly_array_lastWeek[i] = Math.floor(distance_1day_sum*10)/10;
       // alert("distance_weekly_array"+distance_weekly_array);
       //1週間歩行距離計算
-      distance_weekly_sum_lastWeek += distance_1day_sum;
+      distance_weekly_sum_lastWeek += Math.floor(distance_1day_sum*10)/10;
       // alert("distance_weekly_sum"+distance_weekly_sum);
     }
 
@@ -96,7 +99,7 @@ var Distance_Weekly = function() { //日付読み込み
   // now_day = getDay_oneday(now_date.setDate(now_date.getDate()-1));
 }//1週間終わり
 
-  // alert("distance_weekly_array_thisWeek"+distance_weekly_array_thisWeek);
+  // alert("distance_weekly_array"+distance_weekly_array);
   // GRAGH_BARに渡せるようにする
   // getDistance_array(distance_weekly_array);
   getDistance_weekly(distance_weekly_sum_thisWeek,distance_weekly_array_thisWeek,distance_weekly_sum_lastWeek,distance_weekly_array_lastWeek);

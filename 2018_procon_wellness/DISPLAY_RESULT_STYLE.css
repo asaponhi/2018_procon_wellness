@@ -1,27 +1,98 @@
 
-
+.content-wrapper{
+  margin-top: 2.2%;
+  overflow: hidden;
+}
 .identity{
   width:100%;
   height: auto;
+  display: flex;
+  /* background-image: url("img/WelICing_onlyBar.png"); */
+
+  /* position: relative; */
+  /* text-align: center; */
+}
+.col{
+  width:calc(100%/3);
   text-align: center;
+  position: relative;
+  /* background-image: url("img/WelICing_onlyBar.png"); */
+
+}
+.icon img{
+  width: 80%;
+  height: auto;
+  margin-top: 2%;
 }
 #UserID{
-  font-size:40px;
+  /* display: inline-block; */
+  font-size:70px;
   font-family: "Arial";
   font-weight:bold;
   color: #655f5f;
+  background: white;
+  width: 60%;
+  height: 80%;
   /* border-bottom: dotted 3px #655f5f; */
-  background: linear-gradient(transparent 85%,yellow 85%);
-  padding-bottom: 1%;
-  margin-top: -0.4%;
-  margin-bottom: 1%;
+  /* background: linear-gradient(transparent 85%,yellow 85%); */
 }
+.BorderLine{
+  width: 100%;
+  margin-top: 1.35%;
+  border-bottom: 6px solid;
+  border-image: linear-gradient(to right,yellow 85%,yellow 85%);
+  /* border-image: linear-gradient(to right,#223668 15%,#2e5694 25%,#8fabda 35%,#c0d6ed 25%); */
+  border-image-slice: 1;
+
+  /* border-image: linear-gradient(to right,yellow 85%,yellow 85%);223668 */
+    /* color: yellow;
+  text-decoration : underline; */
+
+  /* 下線が青画像だと微妙すぎる */
+  /* width: 100%;
+  height: auto;
+  background-image: url("img/WelICing_onlyBar.png");
+background-position: left top;
+background-repeat: repeat-x;
+background-attachment: fixed; */
+
+}
+.inner{
+  position: absolute;
+  /* top: 70%; */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+/* timer_circle */
+.circle{
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  text-align:center;
+  vertical-align: middle;
+  border-radius: 30%;
+  /* border: solid 3px rgba(252,230,16,0.7); */
+  /* background: yellow; */
+  border: solid 3px white;
+  background: white;
+}
+
+/* Graphを覆うmain */
+.main{
+  margin-top: 2%;
+  margin-left: -1%;
+  display: flex;
+}
+/* 三等分にしないため、いらないかも */
 .content{
   /* width : calc(100% / 3) ; */
   /* display: flex;
   flex-direction: row; */
-  display: inline-block;
-  margin-top:-1%;
+  /* display: inline-block; */
+  /* margin-top:-1%; */
 }
 .li{
   display: inline-block;
@@ -37,8 +108,8 @@
 }
 .title{
   /* font-size: 10px; */
-  font-size: 53px;
-  margin-bottom: 2%;
+  font-size: 52px;
+  margin-bottom: 0%;
 }
 .graph-doughnut{
   /* width: 25%; */
@@ -65,8 +136,8 @@
 }
 .myDoughnut-distance_weekly_sum_unit{
   position: absolute;
-  left:70%;
-  top:17%;
+  left:72%;
+  top:19%;
   /* left:130%;
   top:10%; */
   font-size: 30px;
@@ -76,26 +147,25 @@
 .myDoughnut-achievement-text{
 
   position: absolute;
-  top:58%;
-  left:30%;
+  left:31.5%;
+  top:60%;
   margin: 0 auto;
 
 }
 #myDoughnut-cheer-text{
-font-size: 38px;
+font-size: 36px;
 line-height: 0.8;
 }
 #myDoughnut-distance_rate-text{
   margin-left: -20%;
-font-size: 60px;
+font-size: 58px;
 }
 /* 棒グラフ */
 .graph-bar{
   /* width: 45%; */
   width: 48%;
   height: auto;
-  position: absolute;
-  margin-left: -2%;
+  margin-left: -1.2%;
   /* display: inline-block; */
 }
 .content_third{
@@ -106,17 +176,18 @@ font-size: 60px;
 /* カロリー */
 .calorie-content{
   /* width: 20px; */
-  width: 100%;
+  width: 24%;
   height: auto;
   position: relative;
 }
 .calorie-title{
-  margin-left: 4%;
+  margin-left: -15.5%;
 }
 .calorie-today_example {
   position: absolute;
-  left: 7%;
+  left: 10%;
   margin-top: 4%;
+  margin-left: -19%;
 }
 .calorie-today_example ul {
   /* list-style: none; */
@@ -127,12 +198,13 @@ font-size: 60px;
   font-size: 28px;
 }
 .calorie-text{
-
+  margin-left: -8%;
   /* text-align: center; */
 
 }
 .calorie_example{
-  margin-bottom: 10%;
+  margin-bottom: 5%;
+  margin-left:
 }
 
 /* .graph-bar-title-lastWeek{

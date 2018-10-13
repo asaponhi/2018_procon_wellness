@@ -1,4 +1,3 @@
-
 // var today = new Date(2018, 10-1, 30); //デバッグ用
 // var another_day = new Date(2018,10-1,2);//デバッグ用
 var another_day = new Date();//デバッグ用
@@ -21,7 +20,6 @@ function getDate_slash() {
 
   var now_date = ('0' + String(today.getMonth() + 1).slice(-2) + '/' + String(today.getDate()));
   return now_date;
-
 }
 
 function getDate_hifun() {
@@ -82,10 +80,8 @@ function getDate_this_Week() {
     // }
   }
   //本日よりも次の日
-  today_getDate_this_Week = new Date();
   for (var i = now_day, j = 1; i < 6; i++, j++) {
     today_getDate_this_Week.setDate(today_getDate_this_Week.getDate() + 1);//setDateだと1日加算すると、翌月の月に勝手に移動してくれるのがみそ　getDateに+していくと翌月にくりかえさない
-    // alert("today_getDate_this_Week"+today_getDate_this_Week);
     // if (another_day.getMonth() == today_getDate_this_Week.getMonth() && another_day.getDate() == today_getDate_this_Week.getDate()) {// 月末→月初判定
     //   alert("同じ日");
     //   // this_Week[i + 1] = String(today_getDate_this_Week.getMonth() + 1) + '/' + String(today_getDate_this_Week.getDate() + j);

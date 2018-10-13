@@ -98,7 +98,7 @@ var Gragh_Bar = function() {
             //var dataString=chart.data.data[index];
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            var padding = 5;
+            var padding = -3;
             var position = element.tooltipPosition();
             ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
           });
@@ -150,6 +150,7 @@ var Gragh_Bar = function() {
           // "#f1c40f",
           // "#3498db
           // "#fce610",
+          //,
           "rgba(252,230,16,0.7)",
           "#555555",
           // "#eeeeee",
@@ -174,7 +175,7 @@ var Gragh_Bar = function() {
       legend: { //凡例
         display: true,
         labels: {
-          fontSize: 15,
+          fontSize: 20,
           fontFamily: 'Arial',
           fontStyle:'bold',
 
@@ -201,6 +202,7 @@ var Gragh_Bar = function() {
     borderWidth: 5,       // 枠線の太さ
     borderColor:"#eeeeee",
 };
+//棒グラフ
   var ctx2 = document.getElementById("myBarChart");
   // alert(distance_weekly_array_lastWeek);
   var myBarChart = new Chart(ctx2, {
@@ -269,7 +271,7 @@ var Gragh_Bar = function() {
       legend: { //凡例
         display: true,
         labels: {
-          fontSize: 15,
+          fontSize: 20,
           fontFamily: 'Arial',
           fontStyle:'bold',
         },
@@ -295,7 +297,7 @@ var Gragh_Bar = function() {
             beginAtZero: true,
             autoSkip: true,
             maxTicksLimit: 20, //値の最大表示数
-            fontSize: 25, //フォントサイズ
+            fontSize: 23, //フォントサイズ
             fontFamily: 'Arial',
             callback: function(value, index, values) {
               return value + 'KM';
@@ -318,7 +320,7 @@ var Gragh_Bar = function() {
             beginAtZero: true,
             autoSkip: true,
             maxTicksLimit: 20, //値の最大表示数
-            fontSize: 25, //フォントサイズ //本当
+            fontSize: 23, //フォントサイズ //本当
             fontFamily: 'Arial',
             // fontColor:"#666",
           },

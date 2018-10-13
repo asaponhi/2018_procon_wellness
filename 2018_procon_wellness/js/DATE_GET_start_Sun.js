@@ -63,19 +63,18 @@ function getDate_this_Week() {
   // }
 
   var now_day = today_getDate_this_Week.getDay();//本日の曜日取得
-  if(now_day==0)now_day=7;
   another_day.setMonth(today_getDate_this_Week.getMonth()+1);
   another_day.setDate(1);//月初め取得
   another_day = new Date(today_getDate_this_Week.getFullYear(), today_getDate_this_Week.getMonth(),0);//月末取得
-  this_Week[now_day-1] = String(today_getDate_this_Week.getMonth() + 1) + '/' + String(today_getDate_this_Week.getDate());
+  this_Week[now_day] = String(today_getDate_this_Week.getMonth() + 1) + '/' + String(today_getDate_this_Week.getDate());
   // alert("now_day" + now_day);
   //本日よりも前の日
-  for (var i = now_day, j = 1; i > 1; i--, j++) {//月初→月末判定
+  for (var i = now_day, j = 1; i > 0; i--, j++) {//月初→月末判定
     today_getDate_this_Week.setDate(today_getDate_this_Week.getDate() - 1);//前の日取得
     // alert("today_getDate_this_Week"+today_getDate_this_Week);
     // alert("String(today_getDate_this_Week.getMonth() + 1)"+(today_getDate_this_Week.getMonth() + 1));
     // alert("String(today_getDate_this_Week.getDate())"+(today_getDate_this_Week.getDate()));
-    this_Week[i - 2] = String(today_getDate_this_Week.getMonth() + 1) + '/' + String(today_getDate_this_Week.getDate());
+    this_Week[i - 1] = String(today_getDate_this_Week.getMonth() + 1) + '/' + String(today_getDate_this_Week.getDate());
     // if (another_day.getMonth() == today_getDate_this_Week.getMonth() && another_day.getDate() == today_getDate_this_Week.getDate()) {
     //   // alert("同じ日");
     // } else {
@@ -84,7 +83,7 @@ function getDate_this_Week() {
   }
   //本日よりも次の日
   today_getDate_this_Week = new Date();
-  for (var i = now_day, j = 1; i < 7; i++, j++) {
+  for (var i = now_day, j = 1; i < 6; i++, j++) {
     today_getDate_this_Week.setDate(today_getDate_this_Week.getDate() + 1);//setDateだと1日加算すると、翌月の月に勝手に移動してくれるのがみそ　getDateに+していくと翌月にくりかえさない
     // alert("today_getDate_this_Week"+today_getDate_this_Week);
     // if (another_day.getMonth() == today_getDate_this_Week.getMonth() && another_day.getDate() == today_getDate_this_Week.getDate()) {// 月末→月初判定
@@ -95,14 +94,8 @@ function getDate_this_Week() {
     //   alert("別の日");
     //   this_Week[i + 1] = String(today_getDate_this_Week.getMonth() + 1) + '/' + String(today_getDate_this_Week.getDate() + j);
     // }
-      this_Week[i] = String(today_getDate_this_Week.getMonth() + 1) + '/' + String(today_getDate_this_Week.getDate());
+      this_Week[i + 1] = String(today_getDate_this_Week.getMonth() + 1) + '/' + String(today_getDate_this_Week.getDate());
 
-      // if(i!=6){
-      //   this_Week[i] = String(today_getDate_this_Week.getMonth() + 1) + '/' + String(today_getDate_this_Week.getDate());
-      // }
-      // else if(i==6){
-      //
-      // }
   }
   // alert(this_Week);
   return this_Week;

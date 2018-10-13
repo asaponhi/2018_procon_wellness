@@ -4,11 +4,9 @@ document.write("<script type='text/javascript' src='CSV_READER.js'></script>");
 document.write("<script type='text/javascript' src='DATE_GET.js'></script>");
 
 var Calorie_Calc = function() {
-var result = getCSV("data.csv"); //csv読み込み
+  var result = getCSV("ThisWeek.csv"); //csv読み込み
+// var result = getCSV("data.csv"); //csv読み込み
 
-    while(result[1][0]==null){   
- result= getCSV("data.csv");
-    }
   var now_date = new Date();
   //1週間のカロリーは足していく
   var now_date_hifun = getDate_hifun_oneday(now_date);
@@ -16,6 +14,7 @@ var result = getCSV("data.csv"); //csv読み込み
   var start_day = getDay_oneday(now_date);
   var calorie_today_sum = 0; //1日歩行距離初期化
   var calorie_weekly_sum_thisWeek = 0;
+  var array_calorie_index=4;
   var j = 1;
   // alert(a+1+"回目\n"+"now_date_hifun: "+now_date_hifun+"\n"+"now_day: "+now_day+"\n"+"start_day: "+start_day);
   //1週間計算
@@ -38,13 +37,13 @@ var result = getCSV("data.csv"); //csv読み込み
     } //1日終わり　while
     //1週間歩行距離計算
     calorie_weekly_sum_thisWeek += calorie_today_sum;
-     
+
     //日付を1日前にする
     now_date.setDate(now_date.getDate() - 1);
     now_date_hifun = getDate_hifun_oneday(now_date); //i--,numは大きくなる
 
   } //1週間終わり
-    
+
   //出力
   //累計カロリーはトータルとるだけ:result[j][7]
   // document.getElementById("calorie-total-text").innerHTML = "<span style='font-size: 50px;'>累計:</span>"+ "<span style='font-size: 65px;'>"+String(Math.round(result[1][7]))+"</span>"+"<span style='font-size:30px;'> KCAL</span>"; //ID表示　1回目でも大丈夫
@@ -67,7 +66,7 @@ var result = getCSV("data.csv"); //csv読み込み
       // num_array[i]=Math.floor(Math.random() * (16 - 0 + 1) + 1);
       // alert("num_array[]"+i+num_array[i]);
     }
-    
+
     shuffle(num_array);
     num_array=rangeRandom(0,12);
     document.getElementById("calorie-today_example-text1").innerHTML = food_example[num_array[0]][0]+" "+"<span style='font-size:45px;'>"+food_example[num_array[0]][1]+"</span>"+" KCAL";

@@ -3,7 +3,7 @@
 
     //目標となる日時を設定
     var baseSec = liftoffTime.getTime();
-    var addSec = 5000; // 5秒（ミリ秒単位）
+    var addSec = 7000; // 5秒（ミリ秒単位）
 
     var targetSec = baseSec + addSec;
 

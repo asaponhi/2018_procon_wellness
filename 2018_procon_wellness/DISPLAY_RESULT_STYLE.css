@@ -1,12 +1,26 @@
+body {
+  /* background-image:url("img/WelICing_template_UpRight_normal2.png"); */
+  /* background-image:url("./img/WelICing_template_UpRight_normal8.png"); */
+  background-image:url("./img/WelICing_template_UpRight_normal16.png");
 
+  background-size: cover;
+
+  /* background-image:url("img/WelICing_template_only_UpRight.png");
+  background-position: right top;
+background-repeat: no-repeat;
+background-attachment: fixed; */
+}
 .content-wrapper{
   margin-top: 2.2%;
   overflow: hidden;
+
 }
 .identity{
   width:100%;
   height: auto;
   display: flex;
+
+
   /* background-image: url("img/WelICing_onlyBar.png"); */
 
   /* position: relative; */
@@ -38,7 +52,7 @@
 }
 .BorderLine{
   width: 100%;
-  margin-top: 1.35%;
+  margin-top: 1.8%;
   border-bottom: 6px solid;
   border-image: linear-gradient(to right,yellow 85%,yellow 85%);
   /* border-image: linear-gradient(to right,#223668 15%,#2e5694 25%,#8fabda 35%,#c0d6ed 25%); */
@@ -73,11 +87,11 @@ background-attachment: fixed; */
   height: 120px;
   text-align:center;
   vertical-align: middle;
-  border-radius: 30%;
+  /* border-radius: 30%; */
   /* border: solid 3px rgba(252,230,16,0.7); */
   /* background: yellow; */
-  border: solid 3px white;
-  background: white;
+  /* border: solid 3px white; */
+  /* background: white; */
 }
 
 /* Graphを覆うmain */

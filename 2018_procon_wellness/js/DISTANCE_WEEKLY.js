@@ -111,7 +111,7 @@ var Distance_Weekly = function() { //日付読み込み
   // now_day = getDay_oneday(now_date.setDate(now_date.getDate()-1));
 }//1週間終わり
 
-  alert("distance_weekly_array_thisWeek"+distance_weekly_array_thisWeek+"\n"+"distance_weekly_array_lastWeek"+distance_weekly_array_lastWeek);
+  // alert("distance_weekly_array_thisWeek"+distance_weekly_array_thisWeek+"\n"+"distance_weekly_array_lastWeek"+distance_weekly_array_lastWeek);
   // GRAGH_BARに渡せるようにする
   // getDistance_array(distance_weekly_array);
   getDistance_weekly(distance_weekly_sum_thisWeek,distance_weekly_array_thisWeek,distance_weekly_sum_lastWeek,distance_weekly_array_lastWeek);

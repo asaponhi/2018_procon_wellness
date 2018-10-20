@@ -51,39 +51,60 @@ var Calorie_Calc = function() {
 
   //出力
   // alert(calorie_weekly_sum_thisWeek);
+
   document.getElementById("calorie-today_sum_thisWeek-text").innerHTML = "<span style='font-size: 80px;'>" + String(Math.round(calorie_weekly_sum_thisWeek[start_day])) + "</span>" + "<span style='font-size:30px;'> KCAL</span>";
 
   // HONKI_START
-  var food_example = getCSV("csv/food_example_tenuki.csv");
-  alert(food_example);
+  var food_example = getCSV("csv/food_example_honki.csv");
+  const index_food_example_series_num=0;
+  const index_food_example_name=1;
+  const index_food_example_calorie=2;
+  const index_food_example_URL=3;
+  const index_food_example_series_count=4;
+
+  // alert(food_example);
   // series judgement
   var index_series_count = 0;
   var food_example_calorie_sum = 0;
   var count_meal_num = 0;
-  var over_meal_num = 4;
-  var series_num = [food_example[index_series_count][0], 0, 0]; //firstly,0row only
-  const series_num_array = [9, 8, 13]
+  const over_meal_num = 4;
+  var series_num = [food_example[index_series_count][index_food_example_series_count], 0, 0]; //firstly,0row only
+  const series_num_array = [9, 8, 13];//like
   var over_calorie_flag = false;
   var over_meal_num_flag = false;
 
   //First_Judgement
-  while (!over_calorie_flag && !over_num_flag) {
+  while (!over_calorie_flag && !over_meal_num_flag) {
     //1_series_start
     //calc series_num
     var series_num_sum_end;
     var series_num_sum_end_before = 0;
-    for (int k = 0; k < 3; k++) {
-      series_num_sum_end += food_example[k][0];
-    }
-    for (int index_series_meal = 0; index_series_meal < series_num; index_series_meal++) {
-      // random Create
-      // var index_ramdom_array=new Array(series_num_array[index_series_count]);//max_series_num
-      // if()index_ramdom_array[j]=Math.floor(Math.random()*(series_num_sum_end-series_num_sum_before_end)+series_num_sum_before_end);
+    //calorie<10KCAL
+    if(calorie_today_sum<10){
+      series_num_sum_end_before=series_num_array[0]+series_num_array[1];
+      series_num_sum_end=series_num_array[0]+series_num_array[1]+series_num_array[2];
       var index_ramdom_array = rangeRandom(series_num_sum_end_before, series_num_sum_end);
-      series_num_sum_end_before = series_num_sum_end; //update
+      /////////////////////////////////////////////////////
+      for(var j=0;j<over_meal_num;j++)
+      {
+        alert("<10:"+food_example[index_ramdom_array[j]][index_food_example_URL]);
+      }
+      over_meal_num_flag=true;
+    }
+    // calorie>=10KCAL
+    else{
+    /////////////////////////////////////OK
+    for (var k = 0; k < 3; k++) {
+      series_num_sum_end += series_num[k];/////////////////////////////OK
+    }
+    // random Create
+    var index_ramdom_array = rangeRandom(series_num_sum_end_before, series_num_sum_end);
+    series_num_sum_end_before = series_num_sum_end; //update
+
+    for (var index_series_meal = 0; index_series_meal < series_num_array[index_series_count]; index_series_meal++) {
       //Second_Judgement:food_example_calorie
-      if (food_example[index_ramdom_array[index_series_meal]][1] <= calorie_weekly_sum_thisWeek[start_day]) {
-        food_example_calorie_sum += food_example[index_ramdom_array[index_series_meal]][1];
+      if (food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie] <= calorie_weekly_sum_thisWeek[start_day]) {
+        food_example_calorie_sum += food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie];
         count_meal_num++;
         //Third_Judgement:count_meal_num
         if (food_example_calorie_sum <= calorie_weekly_sum_thisWeek[start_day]) {
@@ -91,15 +112,20 @@ var Calorie_Calc = function() {
           break; //for BREAK and while BREAK
         }
         if (count_meal_num >= over_meal_num) {
-          over_num_flag = true;
+          over_meal_num_flag = true;
           break; //for BREAK and while BREAK
         }
       }
+      alert("for"+index_ramdom_array);
     }
+  }
+
     //1_series_end
     index_series_count++;
+    alert("for_end"+index_series_count);
+
     //calc series_num
-    var array_series_num[0,0,0];
+    var array_series_num=[0,0,0];
     if(index_series_count==1){
       array_series_num[0]=series_num_array[0];
       array_series_num[1]=series_num_array[1];
@@ -111,7 +137,7 @@ var Calorie_Calc = function() {
       array_series_num[2]=series_num_array[2];
     }
     series_num = [array_series_num[0],array_series_num[1],array_series_num[2]]; //firstly,0row only
-  }
+}
   //WHILE FLAG END
   // HONKI_END
   ///////////////////////////////////

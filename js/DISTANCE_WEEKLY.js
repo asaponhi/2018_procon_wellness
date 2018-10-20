@@ -3,20 +3,11 @@ document.write("<script type='text/javascript' src='js/CSV_READER.js'></script>"
 document.write("<script type='text/javascript' src='js/DATE_GET.js'></script>");
 document.write("<script type='text/javascript' src='js/chart/GRAGH_BAR.js'></script>");
 
-//var result = getCSV("data.csv"); //csv読み込み
+//var result = getCSV_Date("data.csv"); //csv読み込み
 var Distance_Weekly = function() { //日付読み込み
-  var result= getCSV("ThisWeek.csv");
- // var result_lastWeek= getCSV("LastWeek.csv");
- // var result= getCSV("data.csv");
- //    if(result[1][0]==null)alert("aho");
- //    while(result[1][0]==null){
- // result= getCSV("data.csv");
- //    }
-//    alert(result);
+  var result= getCSV_Date("ThisWeek.csv");
+
     //1日歩行距離計算
-  // var now_date = getDate_hifun();
-  // var now_day = getDay_normal();
-  // var start_day = getDay_normal();
   var now_date = new Date();
   var distance_weekly_array_thisWeek = [0, 0, 0, 0, 0, 0, 0]; //0で初期化 日～土曜
   var distance_weekly_array_lastWeek = [0, 0, 0, 0, 0, 0, 0]; //0で初期化 日～土曜
@@ -106,7 +97,7 @@ var Distance_Weekly = function() { //日付読み込み
   }//1日終わり　while
   // now_date.setDate(now_date.getDate()-1);//i--,numは大きくなる
   week_count=1;
-  result= getCSV("LastWeek.csv");
+  result= getCSV_Date("LastWeek.csv");
 
   // now_day = getDay_oneday(now_date.setDate(now_date.getDate()-1));
 }//1週間終わり

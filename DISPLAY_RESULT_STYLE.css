@@ -1,7 +1,7 @@
 body {
   /* background-image:url("img/WelICing_template_UpRight_normal2.png"); */
   /* background-image:url("./img/WelICing_template_UpRight_normal8.png"); */
-  background-image:url("img/WelICing_template_UpRight_normal16.png");
+  background-image:url("img/WelICing/WelICing_template_UpRight_normal16.png");
 
   background-size: cover;
 
@@ -13,14 +13,11 @@ background-attachment: fixed; */
 .content-wrapper{
   margin-top: 2.2%;
   overflow: hidden;
-
 }
 .identity{
   width:100%;
   height: auto;
   display: flex;
-
-
   /* background-image: url("img/WelICing_onlyBar.png"); */
 
   /* position: relative; */
@@ -121,9 +118,7 @@ background-attachment: fixed; */
   /* display: inline-block; */
   /* margin-top:-1%; */
 }
-.li{
-  display: inline-block;
-}
+
 
 .graph{
   /* display: inline-block; */
@@ -211,28 +206,40 @@ font-size: 58px;
   margin-left: -15.5%;
 }
 .calorie-today_example {
-  position: absolute;
+  /* position: absolute;
   left: 10%;
   margin-top: 4%;
-  margin-left: -19%;
+  margin-left: -19%; */
 }
-.calorie-today_example ul {
-  /* list-style: none; */
-  font-family: "Arial";
-  font-weight:bold;
-  color: #655f5f;
-  text-align: left;
-  font-size: 28px;
+.calorie_example{
+  /* float: left; */
+  display: inline-block;
+  width: 20%;
 }
-.calorie-text{
+.calorie-today_example li{
+  /* height: 8%; */
+}
+.calorie_example-img{
+  /* width: 100%; */
+  /* left: 0%;
+  top:0%; */
+}
+img{
+  width: 100%;
+  height: auto;
+}
+
+
+/* .calorie-text{
   margin-left: -8%;
   /* text-align: center; */
 
 }
 .calorie_example{
-  margin-bottom: 5%;
-  margin-left:
+  /* margin-bottom: 5%;
+  margin-left: */
 }
+
 
 /* .graph-bar-title-lastWeek{
   width: 140%;

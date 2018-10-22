@@ -210,37 +210,28 @@ font-size: 58px;
   left: 10%;
   margin-top: 4%;
   margin-left: -19%; */
+
 }
 .calorie_example{
   /* float: left; */
-  display: inline-block;
-
+  /* display: inline-block; */
+  display: flex;
+  justify-content: center;
+    align-items: center;
+    margin-top: -13%;
+    padding:4% 0% 4% 0%;
+    margin-left: -6%;
 }
-
 .calorie-today_example ul{
   list-style: none;
 }
-.calorie-today_example li{
-  /* position: relative; */
-
-  /* height: 8%; */
-}
 .calorie_example-img{
   width: 30%;
-  /* height: 3%; */
-  /* position: absolute;
-  top:0%;
-  left: 0%; */
-  /* width: 100%; */
-  /* left: 0%;
-  top:0%; */
 }
-.calorie_example_text{
-  width: 100%;
-  height: auto;
-  position: absolute;
-  top:0%;
-  left: 0%;
+.calorie_example-text{
+  width: 70%;
+  margin-left: -12%;
+  margin-top: 2%;
 }
 img{
   width: 100%;
@@ -253,10 +244,7 @@ img{
   /* text-align: center; */
 
 }
-.calorie_example{
-  /* margin-bottom: 5%;
-  margin-left: */
-}
+
 
 
 /* .graph-bar-title-lastWeek{

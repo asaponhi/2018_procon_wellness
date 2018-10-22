@@ -99,6 +99,7 @@ var Distance_Weekly = function() { //日付読み込み
   week_count=1;
   result= getCSV_Date("LastWeek.csv");
 
+
   // now_day = getDay_oneday(now_date.setDate(now_date.getDate()-1));
 }//1週間終わり
 

@@ -106,7 +106,7 @@ var Calorie_Calc = function() {
         // alert("URL"+food_example[display_array[k].index][index_food_example_URL]);
         document.getElementById("calorie-today_example-img" + String(k + 1)).src = "img/meal/"+food_example[display_array[k].index][index_food_example_URL];
         // document.getElementById("calorie-today_example-img" + String(k + 1)).innerHTML = "<img src ='ファイル名'>";
-        document.getElementById("calorie-today_example-text" + String(k + 1)).innerHTML = "<span style='font-size:45px;'>" + display_array[k].calorie + "</span>" + " KCAL";
+        document.getElementById("calorie-today_example-text" + String(k + 1)).innerHTML = "<span style='font-size:50px;'>" + display_array[k].calorie + "</span>" + "<span style='font-size:20px;'> KCAL</span>";
       }
       over_meal_num_flag = true;
     }

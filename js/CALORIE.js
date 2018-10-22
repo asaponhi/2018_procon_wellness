@@ -74,6 +74,7 @@ var Calorie_Calc = function() {
   //calc series_num
   var series_num_sum_end=series_num_array[0]- 1;
   var series_num_sum_end_before = 0;
+  var display_array = [];
 
   //First_Judgement
   while (!over_calorie_flag && !over_meal_num_flag) {
@@ -86,7 +87,7 @@ var Calorie_Calc = function() {
       var index_ramdom_array = rangeRandom(series_num_sum_end_before, series_num_sum_end);
       // alert("index_ramdom_array" + index_ramdom_array);
       /////////////////////////////////////////////////////
-      var display_array = [];
+      // var display_array = [];
       for (var j = 0; j < over_meal_num; j++) {
         // alert("<10:" + food_example[index_ramdom_array[j]][index_food_example_URL]);
         //sort MAX→MIN
@@ -120,35 +121,41 @@ var Calorie_Calc = function() {
       var index_ramdom_array = rangeRandom(series_num_sum_end_before, series_num_sum_end);
       alert("index_ramdom_array"+index_ramdom_array);
       series_num_sum_end_before = series_num_sum_end+1; //update //終わりの数字の＋１からスタート
-
+      //1SERIES
       for (var index_series_meal = 0; index_series_meal < series_num_array[index_series_count]; index_series_meal++) {
         var temp_calorie_sum = Number(food_example_calorie_sum) + Number(food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie]);
         //Second_Judgement:food_example_calorie
         if (temp_calorie_sum <= calorie_weekly_sum_thisWeek[start_day]) {
-        // if (food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie] <= calorie_weekly_sum_thisWeek[start_day]) {
+          //REGISTER CALORIE
+          display_array[count_meal_num] = {
+            index: index_ramdom_array[index_series_meal],
+            calorie: food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie]
+          };
           food_example_calorie_sum += Number(food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie]);
           count_meal_num++;
-          //sort
-          
-          document.getElementById("calorie-today_example-img" + String(count_meal_num)).src = "img/meal/"+food_example[index_ramdom_array[index_series_meal]][index_food_example_URL];
-          // document.getElementById("calorie-today_example-img" + String(k + 1)).innerHTML = "<img src ='ファイル名'>";
-          document.getElementById("calorie-today_example-text" + String(count_meal_num)).innerHTML = "<span style='font-size:50px;'>" + food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie] + "</br></span>" + "<span style='font-size:25px;'>    KCAL</span>";
 
           //Third_Judgement:count_meal_num
-          if (count_meal_num >= over_meal_num) {
-            over_meal_num_flag = true;
-            break; //for BREAK and while BREAK
-          }
           if (food_example_calorie_sum >= calorie_weekly_sum_thisWeek[start_day]) {
+
             // over_calorie_flag = true;
             alert("over_calorie_flag"+over_calorie_flag);
             break; //for BREAK and while BREAK
             // if( || index_series_meal>=series_num_array[index_series_count])break; //for BREAK and while BREAK
           }
+          if (count_meal_num >= over_meal_num) {
+            over_meal_num_flag = true;
+            break; //for BREAK and while BREAK
+          }
+
         }
         // alert("for" + index_ramdom_array);
       }
       //1_series_end
+
+
+
+
+
       index_series_count++;
       if(index_series_count==3){
         over_meal_num_flag = true;
@@ -181,6 +188,20 @@ var Calorie_Calc = function() {
 
   }
   //WHILE FLAG END
+
+  //SORT
+  display_array.sort(
+    function(a, b) {
+      return b.calorie - a.calorie;
+    }
+  );
+  for(var k=0;k<count_meal_num;k++){
+  document.getElementById("calorie-today_example-img" + String(k+1)).src = "img/meal/"+food_example[display_array[k].index][index_food_example_URL];
+  // document.getElementById("calorie-today_example-img" + String(k + 1)).innerHTML = "<img src ='ファイル名'>";
+  document.getElementById("calorie-today_example-text" + String(k+1)).innerHTML = "<span style='font-size:50px;'>" + display_array[k].calorie + "</br></span>" + "<span style='font-size:25px;'>    KCAL</span>";
+  // document.getElementById("calorie-today_example-text" + String(k+1)).innerHTML = "<span style='font-size:50px;'>" + food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie] + "</br></span>" + "<span style='font-size:25px;'>    KCAL</span>";
+  }
+
   // HONKI_END
   ///////////////////////////////////
   // TENUKI

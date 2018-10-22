@@ -25,13 +25,11 @@ var Calorie_Calc = function() {
   //1週間計算
   for (var i = start_day; i >= 0; i--) {
     //1日計算スクリプト
-    alert("String(result[j][2])"+String(result[j][2]));
-    alert("now_date_hifun"+now_date_hifun);
 
     var date_chage_flag = false;
     while (!date_chage_flag) {
       if (result.length <= 2) { //比較データがないとき（はじめて記録したとき）+（例外時にも対応）
-        calorie_today_sum = result[j][4];
+        calorie_today_sum = Number(result[j][4]);
         date_chage_flag = true;
       } else if (String(result[j][2]) == now_date_hifun) { //今日の日付と同じなら　//now_day（deb）の日付を1日前に設定する
         calorie_today_sum += Number(result[j][4]);
@@ -43,7 +41,7 @@ var Calorie_Calc = function() {
       }
     } //1日終わり　while
     //1週間歩行距離計算
-    alert(calorie_today_sum);
+
     calorie_weekly_sum_thisWeek[i] += calorie_today_sum;
     calorie_today_sum = 0;
     //日付を1日前にする
@@ -53,11 +51,10 @@ var Calorie_Calc = function() {
   } //1週間終わり
 
   //出力
-  alert("calorie_weekly_sum_thisWeek[start_day]"+calorie_weekly_sum_thisWeek[start_day]);
 
   document.getElementById("calorie-today_sum_thisWeek-text").innerHTML = "<span style='font-size: 80px;'>" + String(Math.round(calorie_weekly_sum_thisWeek[start_day])) + "</span>" + "<span style='font-size:30px;'> KCAL</span>";
 
-  // HONKI_START
+  ////////////////////////////////////////////////////////// HONKI_START
   var food_example = getCSV("csv/food_example_honki.csv");
   const index_food_example_series_num = 0;
   const index_food_example_name = 1;
@@ -71,19 +68,19 @@ var Calorie_Calc = function() {
   var food_example_calorie_sum = 0;
   var count_meal_num = 0;
   const over_meal_num = 4;
-  var series_num = [food_example[index_series_count][index_food_example_series_count], 0, 0]; //firstly,0row only
   const series_num_array = [9, 8, 13]; //like
   var over_calorie_flag = false;
   var over_meal_num_flag = false;
+  //calc series_num
+  var series_num_sum_end=series_num_array[0]- 1;
+  var series_num_sum_end_before = 0;
 
   //First_Judgement
   while (!over_calorie_flag && !over_meal_num_flag) {
     //1_series_start
-    //calc series_num
-    var series_num_sum_end;
-    var series_num_sum_end_before = 0;
+
     //calorie<10KCAL
-    if (calorie_today_sum < 10) {
+    if (calorie_weekly_sum_thisWeek[start_day] < 10) {
       series_num_sum_end_before = series_num_array[0] + series_num_array[1];
       series_num_sum_end = series_num_array[0] + series_num_array[1] + series_num_array[2] - 1;
       var index_ramdom_array = rangeRandom(series_num_sum_end_before, series_num_sum_end);
@@ -98,7 +95,7 @@ var Calorie_Calc = function() {
           calorie: food_example[index_ramdom_array[j]][index_food_example_calorie]
         };
       }
-      //sort MAX→MIN
+      //sort MAX→MIN シリーズ3から4つランダムに選ぶからソートする必要がある
       display_array.sort(
         function(a, b) {
           return b.calorie - a.calorie;
@@ -117,48 +114,71 @@ var Calorie_Calc = function() {
     // calorie>=10KCAL
     else {
       /////////////////////////////////////OK
-      for (var k = 0; k < 3; k++) {
-        series_num_sum_end += series_num[k]; /////////////////////////////OK
-      }
       // random Create
+      // alert("series_num_sum_end_before"+series_num_sum_end_before);
+      // alert("series_num_sum_end"+series_num_sum_end);
       var index_ramdom_array = rangeRandom(series_num_sum_end_before, series_num_sum_end);
-      series_num_sum_end_before = series_num_sum_end; //update
+      alert("index_ramdom_array"+index_ramdom_array);
+      series_num_sum_end_before = series_num_sum_end+1; //update //終わりの数字の＋１からスタート
 
       for (var index_series_meal = 0; index_series_meal < series_num_array[index_series_count]; index_series_meal++) {
+        var temp_calorie_sum = Number(food_example_calorie_sum) + Number(food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie]);
         //Second_Judgement:food_example_calorie
-        if (food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie] <= calorie_weekly_sum_thisWeek[start_day]) {
-          food_example_calorie_sum += food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie];
+        if (temp_calorie_sum <= calorie_weekly_sum_thisWeek[start_day]) {
+        // if (food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie] <= calorie_weekly_sum_thisWeek[start_day]) {
+          food_example_calorie_sum += Number(food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie]);
           count_meal_num++;
+          //sort
+          
+          document.getElementById("calorie-today_example-img" + String(count_meal_num)).src = "img/meal/"+food_example[index_ramdom_array[index_series_meal]][index_food_example_URL];
+          // document.getElementById("calorie-today_example-img" + String(k + 1)).innerHTML = "<img src ='ファイル名'>";
+          document.getElementById("calorie-today_example-text" + String(count_meal_num)).innerHTML = "<span style='font-size:50px;'>" + food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie] + "</br></span>" + "<span style='font-size:25px;'>    KCAL</span>";
+
           //Third_Judgement:count_meal_num
-          if (food_example_calorie_sum <= calorie_weekly_sum_thisWeek[start_day]) {
-            over_calorie_flag = true;
-            break; //for BREAK and while BREAK
-          }
           if (count_meal_num >= over_meal_num) {
             over_meal_num_flag = true;
             break; //for BREAK and while BREAK
           }
+          if (food_example_calorie_sum >= calorie_weekly_sum_thisWeek[start_day]) {
+            // over_calorie_flag = true;
+            alert("over_calorie_flag"+over_calorie_flag);
+            break; //for BREAK and while BREAK
+            // if( || index_series_meal>=series_num_array[index_series_count])break; //for BREAK and while BREAK
+          }
         }
         // alert("for" + index_ramdom_array);
       }
+      //1_series_end
+      index_series_count++;
+      if(index_series_count==3){
+        over_meal_num_flag = true;
+        alert("3:break");
+        break;
+      }
+      // alert("for_end" + index_series_count);
+      // alert("index_series_count"+index_series_count);
+
+      //calc series_num
+      var array_series_num = [0, 0, 0];
+      if (index_series_count == 1) {
+        array_series_num[0] = series_num_array[0];
+        array_series_num[1] = series_num_array[1];
+        array_series_num[2] = 0;
+      } else if (index_series_count == 2) {
+        array_series_num[0] = series_num_array[0];
+        array_series_num[1] = series_num_array[1];
+        array_series_num[2] = series_num_array[2];
+      }
+      series_num = [array_series_num[0], array_series_num[1], array_series_num[2]]; //firstly,0row only
+      //calc series_num
+      var temp_seriese_sum=0;
+      for(var k=0;k<3;k++){
+        temp_seriese_sum +=series_num[k]
+      }
+      series_num_sum_end=temp_seriese_sum- 1;
+
     }
 
-    //1_series_end
-    index_series_count++;
-    // alert("for_end" + index_series_count);
-
-    //calc series_num
-    var array_series_num = [0, 0, 0];
-    if (index_series_count == 1) {
-      array_series_num[0] = series_num_array[0];
-      array_series_num[1] = series_num_array[1];
-      array_series_num[1] = 0;
-    } else if (index_series_count == 2) {
-      array_series_num[0] = series_num_array[0];
-      array_series_num[1] = series_num_array[1];
-      array_series_num[2] = series_num_array[2];
-    }
-    series_num = [array_series_num[0], array_series_num[1], array_series_num[2]]; //firstly,0row only
   }
   //WHILE FLAG END
   // HONKI_END
@@ -167,7 +187,7 @@ var Calorie_Calc = function() {
   // TENUKI_END
 }
 
-// HONKI_END
+///////////////////////////////////////////////////////////// HONKI_END
 ///////////////////////////////////
 // TENUKI
 // var food_example = getCSV("food_example_tenuki.csv");

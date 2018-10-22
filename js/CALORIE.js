@@ -4,7 +4,7 @@ document.write("<script type='text/javascript' src='js/CSV_READER.js'></script>"
 document.write("<script type='text/javascript' src='js/DATE_GET.js'></script>");
 
 var Calorie_Calc = function() {
-  var result = getCSV("ThisWeek.csv"); //csv読み込み
+  var result = getCSV_Date("ThisWeek.csv"); //csv読み込み
   // var result = getCSV("data.csv"); //csv読み込み
 
   var now_date = new Date();
@@ -25,6 +25,8 @@ var Calorie_Calc = function() {
   //1週間計算
   for (var i = start_day; i >= 0; i--) {
     //1日計算スクリプト
+    alert("String(result[j][2])"+String(result[j][2]));
+    alert("now_date_hifun"+now_date_hifun);
 
     var date_chage_flag = false;
     while (!date_chage_flag) {
@@ -41,6 +43,7 @@ var Calorie_Calc = function() {
       }
     } //1日終わり　while
     //1週間歩行距離計算
+    alert(calorie_today_sum);
     calorie_weekly_sum_thisWeek[i] += calorie_today_sum;
     calorie_today_sum = 0;
     //日付を1日前にする
@@ -50,7 +53,7 @@ var Calorie_Calc = function() {
   } //1週間終わり
 
   //出力
-  // alert(calorie_weekly_sum_thisWeek);
+  alert("calorie_weekly_sum_thisWeek[start_day]"+calorie_weekly_sum_thisWeek[start_day]);
 
   document.getElementById("calorie-today_sum_thisWeek-text").innerHTML = "<span style='font-size: 80px;'>" + String(Math.round(calorie_weekly_sum_thisWeek[start_day])) + "</span>" + "<span style='font-size:30px;'> KCAL</span>";
 
@@ -106,7 +109,7 @@ var Calorie_Calc = function() {
         // alert("URL"+food_example[display_array[k].index][index_food_example_URL]);
         document.getElementById("calorie-today_example-img" + String(k + 1)).src = "img/meal/"+food_example[display_array[k].index][index_food_example_URL];
         // document.getElementById("calorie-today_example-img" + String(k + 1)).innerHTML = "<img src ='ファイル名'>";
-        document.getElementById("calorie-today_example-text" + String(k + 1)).innerHTML = "<span style='font-size:50px;'>" + display_array[k].calorie + "</span>" + "<span style='font-size:20px;'> KCAL</span>";
+        document.getElementById("calorie-today_example-text" + String(k + 1)).innerHTML = "<span style='font-size:50px;'>" + display_array[k].calorie + "</br></span>" + "<span style='font-size:25px;'>    KCAL</span>";
       }
       over_meal_num_flag = true;
     }

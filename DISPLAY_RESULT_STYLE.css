@@ -205,11 +205,15 @@ font-size: 58px;
 .calorie-title{
   margin-left: -15.5%;
 }
+#calorie-today_sum_thisWeek-text{
+  margin-top: -3%;
+  padding-bottom: 3%;
+}
 .calorie-today_example {
-  /* position: absolute;
+  position: absolute;
   left: 10%;
-  margin-top: 4%;
-  margin-left: -19%; */
+  margin-top: -5%;
+  margin-left: -19%;
 
 }
 .calorie_example{
@@ -218,20 +222,21 @@ font-size: 58px;
   display: flex;
   justify-content: center;
     align-items: center;
-    margin-top: -13%;
-    padding:4% 0% 4% 0%;
-    margin-left: -6%;
+    margin-left: 15%;
 }
 .calorie-today_example ul{
   list-style: none;
+  margin-top: -3.5%;
 }
 .calorie_example-img{
-  width: 30%;
+  width: 35%;
 }
 .calorie_example-text{
   width: 70%;
-  margin-left: -12%;
-  margin-top: 2%;
+  text-align: left;
+  margin-top: 10%;
+  margin-left: 4%;
+  line-height: 195%;
 }
 img{
   width: 100%;

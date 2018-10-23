@@ -119,7 +119,7 @@ var Calorie_Calc = function() {
       // alert("series_num_sum_end_before"+series_num_sum_end_before);
       // alert("series_num_sum_end"+series_num_sum_end);
       var index_ramdom_array = rangeRandom(series_num_sum_end_before, series_num_sum_end);
-      alert("index_ramdom_array"+index_ramdom_array);
+      // alert("index_ramdom_array"+index_ramdom_array);
       series_num_sum_end_before = series_num_sum_end+1; //update //終わりの数字の＋１からスタート
       //1SERIES
       for (var index_series_meal = 0; index_series_meal < series_num_array[index_series_count]; index_series_meal++) {
@@ -138,7 +138,7 @@ var Calorie_Calc = function() {
           if (food_example_calorie_sum >= calorie_weekly_sum_thisWeek[start_day]) {
 
             // over_calorie_flag = true;
-            alert("over_calorie_flag"+over_calorie_flag);
+            // alert("over_calorie_flag"+over_calorie_flag);
             break; //for BREAK and while BREAK
             // if( || index_series_meal>=series_num_array[index_series_count])break; //for BREAK and while BREAK
           }
@@ -159,7 +159,7 @@ var Calorie_Calc = function() {
       index_series_count++;
       if(index_series_count==3){
         over_meal_num_flag = true;
-        alert("3:break");
+        // alert("3:break");
         break;
       }
       // alert("for_end" + index_series_count);

@@ -7,7 +7,9 @@ var today_getDate_this_Week = new Date();
 
 //お名前表示
 var DateID = function(){
-  document.getElementById("DateID").innerHTML = "------"+(today.getMonth() + 1)+"月" + today.getDate()+"日"+"------"; //ID表示　1回目でも大丈夫
+  var dayOfWeekStr = [ "日", "月", "火", "水", "木", "金", "土" ];
+
+  document.getElementById("DateID").innerHTML = "--- "+(today.getMonth() + 1)+"月" + today.getDate()+"日"+"＜"+dayOfWeekStr[today.getDay()]+"＞---"; //ID表示　1回目でも大丈夫
   // document.getElementById("DateID").innerHTML = today.getFullYear()+"/"+(today.getMonth() + 1)+"/" + today.getDate(); //ID表示　1回目でも大丈夫
   // document.getElementById("DateID").innerHTML = today.getFullYear()+"年"+(today.getMonth() + 1)+"月" + today.getDate()+"日"; //ID表示　1回目でも大丈夫
 }

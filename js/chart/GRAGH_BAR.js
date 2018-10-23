@@ -13,7 +13,7 @@ var difference_distance = -10;
 // function getDistance_weekly(distance_sum, distance_array) { //1週間の各曜日の運動距離格納
 function getDistance_weekly(distance_sum_thisWeek, distance_array_thisWeek,distance_sum_lastWeek, distance_array_lastWeek) { //1週間の各曜日の運動距離格納
   //今週
-  distance_weekly_sum_thisWeek = Number(distance_sum_thisWeek);
+  distance_weekly_sum_thisWeek = Math.floor(distance_sum_thisWeek*10)/10;
   distance_weekly_array_thisWeek = distance_array_thisWeek;
   //先週
   distance_weekly_sum_lastWeek = Number(distance_sum_lastWeek);

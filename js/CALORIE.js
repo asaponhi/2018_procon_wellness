@@ -3,12 +3,14 @@
 document.write("<script type='text/javascript' src='js/CSV_READER.js'></script>");
 document.write("<script type='text/javascript' src='js/DATE_GET.js'></script>");
 
+var random;
+var seed;
 var Calorie_Calc = function() {
   var result = getCSV_Date("ThisWeek.csv"); //csv読み込み
   // var result = getCSV("data.csv"); //csv読み込み
 
-  var now_date = new Date();
   //1週間のカロリーは足していく
+  var now_date = new Date();
   var now_date_hifun = getDate_hifun_oneday(now_date);
   // alert(now_date_hifun);
   var now_day = getDay_oneday(now_date);
@@ -20,6 +22,10 @@ var Calorie_Calc = function() {
   var calorie_today_sum = 0; //1日歩行距離初期化
   var calorie_weekly_sum_thisWeek = [0, 0, 0, 0, 0, 0, 0];
   var array_calorie_index = 4;
+  //ramdom
+  seed = Date.now();
+  random = new Random(seed);
+
   var j = 1;
   // alert(a+1+"回目\n"+"now_date_hifun: "+now_date_hifun+"\n"+"now_day: "+now_day+"\n"+"start_day: "+start_day);
   //1週間計算
@@ -52,10 +58,10 @@ var Calorie_Calc = function() {
 
   //出力
 
-  document.getElementById("calorie-today_sum_thisWeek-text").innerHTML = "<span style='font-size: 80px;'>" + String(Math.round(calorie_weekly_sum_thisWeek[start_day])) + "</span>" + "<span style='font-size:30px;'> KCAL</span>";
+  document.getElementById("calorie-today_sum_thisWeek-text").innerHTML = "<span style='font-size: 80px;'>" + String(Math.round(calorie_weekly_sum_thisWeek[start_day])) + "</span>" + "<span style='font-size:30px;'> kcal</span>";
 
   ////////////////////////////////////////////////////////// HONKI_START
-  var food_example = getCSV("csv/food_example_honki.csv");
+  var food_example = getCSV("csv/food_example_honki_2.csv");
   const index_food_example_series_num = 0;
   const index_food_example_name = 1;
   const index_food_example_calorie = 2;
@@ -68,7 +74,7 @@ var Calorie_Calc = function() {
   var food_example_calorie_sum = 0;
   var count_meal_num = 0;
   const over_meal_num = 4;
-  const series_num_array = [9, 8, 13]; //like
+  const series_num_array = [9, 15, 21]; //like
   var over_calorie_flag = false;
   var over_meal_num_flag = false;
   //calc series_num
@@ -76,15 +82,18 @@ var Calorie_Calc = function() {
   var series_num_sum_end_before = 0;
   var display_array = [];
 
+
   //First_Judgement
   while (!over_calorie_flag && !over_meal_num_flag) {
     //1_series_start
 
-    //calorie<10KCAL
+    //calorie<10kcal
     if (calorie_weekly_sum_thisWeek[start_day] < 10) {
       series_num_sum_end_before = series_num_array[0] + series_num_array[1];
       series_num_sum_end = series_num_array[0] + series_num_array[1] + series_num_array[2] - 1;
       var index_ramdom_array = rangeRandom(series_num_sum_end_before, series_num_sum_end);
+
+
       // alert("index_ramdom_array" + index_ramdom_array);
       /////////////////////////////////////////////////////
       // var display_array = [];
@@ -107,18 +116,20 @@ var Calorie_Calc = function() {
         // alert("URL"+food_example[display_array[k].index][index_food_example_URL]);
         document.getElementById("calorie-today_example-img" + String(k + 1)).src = "img/meal/"+food_example[display_array[k].index][index_food_example_URL];
         // document.getElementById("calorie-today_example-img" + String(k + 1)).innerHTML = "<img src ='ファイル名'>";
-        document.getElementById("calorie-today_example-text" + String(k + 1)).innerHTML = "<span style='font-size:50px;'>" + display_array[k].calorie + "</br></span>" + "<span style='font-size:25px;'>    KCAL</span>";
+        document.getElementById("calorie-today_example-text" + String(k + 1)).innerHTML = "<span style='font-size:50px;'>" + display_array[k].calorie + "</br></span>" + "<span style='font-size:25px;'>    kcal</span>";
       }
       over_meal_num_flag = true;
     }
 
-    // calorie>=10KCAL
+    // calorie>=10kcal
     else {
+
       /////////////////////////////////////OK
       // random Create
       // alert("series_num_sum_end_before"+series_num_sum_end_before);
       // alert("series_num_sum_end"+series_num_sum_end);
       var index_ramdom_array = rangeRandom(series_num_sum_end_before, series_num_sum_end);
+      // alert(index_ramdom_array);
       // alert("index_ramdom_array"+index_ramdom_array);
       series_num_sum_end_before = series_num_sum_end+1; //update //終わりの数字の＋１からスタート
       //1SERIES
@@ -198,8 +209,8 @@ var Calorie_Calc = function() {
   for(var k=0;k<count_meal_num;k++){
   document.getElementById("calorie-today_example-img" + String(k+1)).src = "img/meal/"+food_example[display_array[k].index][index_food_example_URL];
   // document.getElementById("calorie-today_example-img" + String(k + 1)).innerHTML = "<img src ='ファイル名'>";
-  document.getElementById("calorie-today_example-text" + String(k+1)).innerHTML = "<span style='font-size:50px;'>" + display_array[k].calorie + "</br></span>" + "<span style='font-size:25px;'>    KCAL</span>";
-  // document.getElementById("calorie-today_example-text" + String(k+1)).innerHTML = "<span style='font-size:50px;'>" + food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie] + "</br></span>" + "<span style='font-size:25px;'>    KCAL</span>";
+  document.getElementById("calorie-today_example-text" + String(k+1)).innerHTML = "<span style='font-size:50px;'>" + display_array[k].calorie + "</br></span>" + "<span style='font-size:25px;'>    kcal</span>";
+  // document.getElementById("calorie-today_example-text" + String(k+1)).innerHTML = "<span style='font-size:50px;'>" + food_example[index_ramdom_array[index_series_meal]][index_food_example_calorie] + "</br></span>" + "<span style='font-size:25px;'>    kcal</span>";
   }
 
   // HONKI_END
@@ -222,10 +233,10 @@ var Calorie_Calc = function() {
 //
 // shuffle(num_array);
 // num_array=rangeRandom(0,12);
-// document.getElementById("calorie-today_example-text1").innerHTML = food_example[num_array[0]][0]+" "+"<span style='font-size:45px;'>"+food_example[num_array[0]][1]+"</span>"+" KCAL";
-// document.getElementById("calorie-today_example-text2").innerHTML = food_example[num_array[1]][0]+" "+"<span style='font-size:45px;'>"+food_example[num_array[1]][1]+"</span>"+" KCAL";
-// document.getElementById("calorie-today_example-text3").innerHTML = food_example[num_array[2]][0]+" "+"<span style='font-size:45px;'>"+food_example[num_array[2]][1]+"</span>"+" KCAL";
-// document.getElementById("calorie-today_example-text4").innerHTML = food_example[num_array[3]][0]+" "+"<span style='font-size:45px;'>"+food_example[num_array[3]][1]+"</span>"+" KCAL";
+// document.getElementById("calorie-today_example-text1").innerHTML = food_example[num_array[0]][0]+" "+"<span style='font-size:45px;'>"+food_example[num_array[0]][1]+"</span>"+" kcal";
+// document.getElementById("calorie-today_example-text2").innerHTML = food_example[num_array[1]][0]+" "+"<span style='font-size:45px;'>"+food_example[num_array[1]][1]+"</span>"+" kcal";
+// document.getElementById("calorie-today_example-text3").innerHTML = food_example[num_array[2]][0]+" "+"<span style='font-size:45px;'>"+food_example[num_array[2]][1]+"</span>"+" kcal";
+// document.getElementById("calorie-today_example-text4").innerHTML = food_example[num_array[3]][0]+" "+"<span style='font-size:45px;'>"+food_example[num_array[3]][1]+"</span>"+" kcal";
 // TENUKI_END
 
 
@@ -258,6 +269,9 @@ function rangeRandom(min, max) {
 
   for (var i = 0; i < rangeLength; i++) {
     // 0～countArrの個数 の範囲から、数値をランダムに抽出
+    const value = random.next();
+    // var value = random.nextInt(0,1);
+    // var randomTarget = Math.floor((Math.random()/value) * countArr.length);
     var randomTarget = Math.floor(Math.random() * countArr.length);
     // randomArrに数値を格納(randomTargetの数値を格納するのではなく、countArrのrandomTarget番目の配列の数値を格納)
     randomArr[i] = countArr[randomTarget];
@@ -265,4 +279,29 @@ function rangeRandom(min, max) {
     countArr.splice(randomTarget, 1);
   }
   return randomArr;
+}
+
+
+class Random {
+  constructor(seed = 0.2315) {
+    this.x = 0.2315;
+    this.y = 0.2315;
+    this.z = 0.2315;
+    this.w = seed;
+  }
+
+  // XorShift
+  next() {
+    let t;
+
+    t = this.x ^ (this.x << 11);
+    this.x = this.y; this.y = this.z; this.z = this.w;
+    return this.w = (this.w ^ (this.w >>> 19)) ^ (t ^ (t >>> 8));
+  }
+
+  // min以上max以下の乱数を生成する
+  nextInt(min, max) {
+    const r = Math.abs(this.next());
+    return min + (r % (max + 1 - min));
+  }
 }

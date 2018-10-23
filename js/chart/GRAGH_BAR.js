@@ -16,7 +16,7 @@ function getDistance_weekly(distance_sum_thisWeek, distance_array_thisWeek,dista
   distance_weekly_sum_thisWeek = Math.floor(distance_sum_thisWeek*10)/10;
   distance_weekly_array_thisWeek = distance_array_thisWeek;
   //先週
-  distance_weekly_sum_lastWeek = Number(distance_sum_lastWeek);
+  distance_weekly_sum_lastWeek = Math.floor(distance_sum_lastWeek*10)/10;
   distance_weekly_array_lastWeek = distance_array_lastWeek;
   // alert("GRAGH_BAR_distance_weekly_sum_thisWeek"+distance_weekly_sum_thisWeek);
   // alert("GRAGH_BAR_distance_weekly_array_thisWeek"+distance_weekly_array_thisWeek);
@@ -146,7 +146,7 @@ var Gragh_Bar = function() {
 
     type: 'doughnut',
     data: {
-      labels: ["1週間の歩き", "1週間の推奨歩行距離 " + String(achievement_distance) + "KM まで"],
+      labels: ["1週間の歩き", "1週間の推奨歩行距離 " + String(achievement_distance) + "km まで"],
       datasets: [{
         backgroundColor: [
           // "#f1c40f",
@@ -302,7 +302,7 @@ var Gragh_Bar = function() {
             fontSize: 23, //フォントサイズ
             fontFamily: 'Arial',
             callback: function(value, index, values) {
-              return value + 'KM';
+              return value + 'km';
             }
           },
           lables: {
